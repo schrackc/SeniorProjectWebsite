@@ -1,7 +1,187 @@
 <html>
-<head> Test </head>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+th, td {
+  padding: 10px;
+}
+</style>
+</head>
+
+<body>
+    <h2>Web UI</h2>
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    body {font-family: Arial;}
+    
+    /* Style the tab /
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+    
+    / Style the buttons inside the tab /
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 17px;
+    }
+    
+    / Change background color of buttons on hover /
+    .tab button:hover {
+      background-color: #ddd;
+    }
+    
+    / Create an active/current tablink class /
+    .tab button.active {
+      background-color: #ccc;
+    }
+    
+    / Style the tab content */
+    .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+    </style>
+    </head>
+    <body>
+    
+    <h2>Tabs</h2>
+    <p>Click on the buttons inside the tabbed menu:</p>
+    
+
+    
+    <div class="tab">
+      <button class="tablinks" onclick="openCity(event, 'Tickets')">Tickets</button>
+      <button class="tablinks" onclick="openCity(event, 'Vehicles')">Vehicles</button>
+      <button class="tablinks" onclick="openCity(event, 'Officers')">Officers</button>
+      <button class="tablinks" onclick="openCity(event, 'Parking Lot')">Parking Lot</button>
+    </div>
+
+    <div id="Tickets" class="tabcontent">
+      <h3>Tickets</h3>
+      <p><table>
+        <tr>
+          <th>Ticket Number</th>
+          <th>Time</th>
+          <th>Officer</th>
+          <th>Parking Lot</th>
+          <th>Plate Number</th>
+          <th>Car Make</th>
+          <th>Car Model</th>
+          <th>Offense</th>
+        </tr>
+        <tr>
+          <td>1111</td>
+          <td>12:34</td>
+          <td>Davis</td>
+          <td>Lot C</td>
+          <td>XXXX-0000</td>
+          <td>Honda</td>
+          <td>Civic</td>
+          <td>XXX</td>
+        </tr>
+      </table>
+      </p>
+    </div>
+    
+    <div id="Vehicles" class="tabcontent">
+      <h3>Vehicles</h3>
+      <p>
+        <table>
+        <tr>
+          <th>Licence Plate</th>
+          <th>Parking Lot</th>
+          <th>Car Make</th>
+          <th>Car Model</th>
+        </tr>
+        <tr>
+          <td>XXXX-0000</td>
+          <td>Lot C</td>
+          <td>Honda</td>
+          <td>Civic</td>
+        </tr>
+      </table>
+    </p> 
+    </div>
+    
+    <div id="Officers" class="tabcontent">
+      <h3>Officers</h3>
+      <p>
+        <table>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Username</th>
+          <th>Password</th>
+        </tr>
+        <tr>
+          <td>Jake</td>
+          <td>Huges</td>
+          <td>OfficerJH</td>
+          <td>XXXXXX</td>
+        </tr>
+      </table>
+    </p>
+    </div>
+
+    <div id="Parking Lot" class="tabcontent">
+      <h3>Parking Lot</h3>
+      <p>
+        <table>
+        <tr>
+          <th>Licence Plate</th>
+          <th>Parking Lot</th>
+          <th>Car Make</th>
+          <th>Car Model</th>
+        </tr>
+        <tr>
+          <td>XXXX-0000</td>
+          <td>Lot C</td>
+          <td>Honda</td>
+          <td>Civic</td>
+        </tr>
+      </table>
+    </p> 
+    </div>
+    
+    <script>
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+    </script>
+    
+    </body>
+    </html>
+
+
+
+</body>
 
 
 
 
-</html>

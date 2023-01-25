@@ -1,0 +1,14 @@
+{
+  "database": {
+    "rules": "RealtimeSecurityRules"
+  },
+  "hosting": {
+    "site": "scan-a-lot-management",
+    "public": "scan-a-lot-management",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

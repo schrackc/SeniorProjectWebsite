@@ -80,9 +80,27 @@ span.psw {
     <input type="text" placeholder="Enter Username" name="uname" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-        
-    <button onClick="location.href='data-tables.html'" type="button">Login </button>
+   <!-- <input type="password" placeholder="Enter Password" name="psw" required> -->
+   <input type="password" placeholder="Enter Password" value="" id="myInput">
+   <input type="checkbox" onclick="myFunction()">Show Password
+
+   <script>
+   function myFunction() {
+     var x = document.getElementById("myInput");
+     if (x.type === "password") {
+       x.type = "text";
+     } else {
+       x.type = "password";
+     }
+   }
+   </script>
+
+    
+    
+    <button onClick="location.href='data-tables.html'" type="button">Login 
+      
+    </button>
+    
     <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me
     </label>

@@ -16,7 +16,7 @@ input[type=text], input[type=password] {
 }
 
 button {
-  background-color: #aa049c;
+  background-color: rgb(98,0,238);
   color: rgb(255, 255, 255);
   padding: 14px 20px;
   margin: 8px 0;
@@ -80,10 +80,12 @@ span.psw {
     <input type="text" placeholder="Enter Username" name="uname" required>
 
     <label for="psw"><b>Password</b></label>
-   <!-- <input type="password" placeholder="Enter Password" name="psw" required> -->
+   
    <input type="password" placeholder="Enter Password" value="" id="myInput">
    <input type="checkbox" onclick="myFunction()">Show Password
 
+
+   <!--Script for view password box-->
    <script>
    function myFunction() {
      var x = document.getElementById("myInput");

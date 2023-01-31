@@ -72,97 +72,39 @@ span.psw {
 </head>
 <body>
   
-<Center> <h2>Scan-A-Lot Admin Login</h2> </Center>
-
+ <h2>Scan-A-Lot Admin Login</h2> 
 
   <div class="imgcontainer">
     <img src="Images/logo.png" alt="Scan-A-Lot" class="avatar">
   </div>
 
   <div class="container">
-    <label for="uname"><b>Email</b></label>
-    <!-- <input type="text" placeholder="Enter Username" name="uname" required> -->
+
+    <!-- Reference labels using the input id -->
+    <label for="email"><b>Email</b></label>
     <input type="email" placeholder="email here" id="email"><br>
 
-    <label for="psw"><b>Password</b></label>
-   
-   <!--<input type="password" placeholder="Enter Password" value="" id="myInput"> -->
+    <label for="password">Password</label>
    <input type="password" placeholder="password here" id="password"><br>
-   <input type="checkbox" onclick="myFunction()">Show Password
-
-
-   <!--Script for view password box-->
-   <script>
-   function myFunction() {
-     var x = document.getElementById("myInput");
-     if (x.type === "password") {
-       x.type = "text";
-     } else {
-       x.type = "password";
-     }
-   }
-   </script>
-
-    
 
   <button id = button_login>Login </button>
-    <!--<button onclick="signIn()" onClick= "location.href='data-tables.html'"  id="signIn">Sign In</button>-->
-    <!-- <button onClick="signIn(); location.href='data-tables.html';"   id="signIn">Sign In</button> -->
-    
-    
-    <!--
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
-    -->
   </div>
-<!--
-  <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn">Cancel</button>
-    <span class="psw">Forgot <a href="#">password?</a></span>
-  </div>
--->
-
-
-
-
-
-<!-- <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-analytics.js";
-  src="https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyDIEtCfoSgt-Ka56fFwouFDvEXId0Xrk78",
-    authDomain: "scan-a-lot.firebaseapp.com",
-    projectId: "scan-a-lot",
-    storageBucket: "scan-a-lot.appspot.com",
-    messagingSenderId: "816922417821",
-    appId: "1:816922417821:web:ba0a3811f84a8cbbacd274",
-    measurementId: "G-LVFHL8LFNV"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  
-</script> -->
+<!-- These are the javascript modules. A module js file allows you to combine with another js file -->
 <script type="module" src="FirebaseRef.js"></script>
-<script type = "module">
-  
-
+<script type ="module">
   import {signIn} from "./FirebaseRef.js";
-  let email = document.querySelector("#email").value;
-  let password = document.querySelector("#password").value;
+
   let buttonSubmit = document.querySelector("#button_login");
-  buttonSubmit.addEventListener("click", signIn(email, password));
-  
-  
+  buttonSubmit.addEventListener("click",function()
+  { 
+    let email = document.querySelector("#email").value;
+    console.log("the email on button click is: " + email);
+    let password = document.querySelector("#password").value;
+    console.log("the password on button click is: " + password);
+    console.log("Executing sign in"); 
+    signIn(email,password);
+   
+  } );
 </script>
 
 </body>

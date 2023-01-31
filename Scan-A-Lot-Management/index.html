@@ -67,24 +67,27 @@ span.psw {
   }
  
 }
+
 </style>
 </head>
 <body>
-
+  
 <Center> <h2>Scan-A-Lot Admin Login</h2> </Center>
 
-<form action="/action_page.php" method="post">
+
   <div class="imgcontainer">
     <img src="Images/logo.png" alt="Scan-A-Lot" class="avatar">
   </div>
 
   <div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+    <label for="uname"><b>Email</b></label>
+    <!-- <input type="text" placeholder="Enter Username" name="uname" required> -->
+    <input type="email" placeholder="email here" id="email"><br>
 
     <label for="psw"><b>Password</b></label>
    
-   <input type="password" placeholder="Enter Password" value="" id="myInput">
+   <!--<input type="password" placeholder="Enter Password" value="" id="myInput"> -->
+   <input type="password" placeholder="password here" id="password"><br>
    <input type="checkbox" onclick="myFunction()">Show Password
 
 
@@ -101,10 +104,11 @@ span.psw {
    </script>
 
     
+
+  <button id = button_login>Login </button>
+    <!--<button onclick="signIn()" onClick= "location.href='data-tables.html'"  id="signIn">Sign In</button>-->
+    <!-- <button onClick="signIn(); location.href='data-tables.html';"   id="signIn">Sign In</button> -->
     
-    <button onClick="location.href='data-tables.html'" type="button">Login 
-      
-    </button>
     
     <!--
     <label>
@@ -118,12 +122,12 @@ span.psw {
     <span class="psw">Forgot <a href="#">password?</a></span>
   </div>
 -->
-</form>
 
 
 
 
-<script type="module">
+
+<!-- <script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-analytics.js";
@@ -146,7 +150,20 @@ span.psw {
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+  
+</script> -->
+<script type="module" src="FirebaseRef.js"></script>
+<script type = "module">
+  
+
+  import {signIn} from "./FirebaseRef.js";
+  let email = document.querySelector("#email").value;
+  let password = document.querySelector("#password").value;
+  let buttonSubmit = document.querySelector("#button_login");
+  buttonSubmit.addEventListener("click", signIn(email, password));
+  
+  
 </script>
-<script src="FirebaseRef.js"></script>
+
 </body>
 </html>

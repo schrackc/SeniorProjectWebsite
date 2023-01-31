@@ -1,4 +1,6 @@
-import { initializeApp } from "firebase/app "
+
+import { initializeApp} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js"
+import { getAuth, signInWithEmailANdPassword } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js"
 const firebaseConfig = {
     apiKey: "AIzaSyDIEtCfoSgt-Ka56fFwouFDvEXId0Xrk78",
     authDomain: "scan-a-lot.firebaseapp.com",
@@ -8,8 +10,32 @@ const firebaseConfig = {
     appId: "1:816922417821:web:ba0a3811f84a8cbbacd274",
     measurementId: "G-LVFHL8LFNV"
   };
+  //initialize firebase
 
-  const app = initializeApp(firebaseConfig);
+  const importFirebase = firebase.initializeApp(firebaseConfig);
+
+  const auth =  firebase.getAuth(importFirebase);
+
+  //<script src = "FirebaseRef.js"></script>
+
+  function signIn(email, password){
+    const auth = getAuth();
+signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
+    
+    console.log("Successfully Signed In");
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
+  }
+  export {signIn};
+  //export signIn();
+ // const app = initializeApp(firebaseConfig);
 // const officerList = document.querySelector('#officer-list');
 
 // function renderCafe(doc){

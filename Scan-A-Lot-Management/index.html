@@ -92,16 +92,23 @@ span.psw {
 <!-- These are the javascript modules. A module js file allows you to combine with another js file -->
 <script type="module" src="FirebaseRef.js"></script>
 <script type ="module">
+
+  //importing the signIn function from FirebaseRef.js
   import {signIn} from "./FirebaseRef.js";
 
+  //get the login button
   let buttonSubmit = document.querySelector("#button_login");
+  //add the click event listener onto to the button so that we are listening for when the user clicks it
   buttonSubmit.addEventListener("click",function()
   { 
+    
     let email = document.querySelector("#email").value;
     console.log("the email on button click is: " + email);
     let password = document.querySelector("#password").value;
     console.log("the password on button click is: " + password);
     console.log("Executing sign in"); 
+
+    //using the fucntion that was imported from FirebaseRef.js
     signIn(email,password);
    
   } );

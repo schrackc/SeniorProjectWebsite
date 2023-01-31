@@ -1,6 +1,8 @@
 
+//import cdns to connect to firebase
 import { initializeApp} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js"
-import { getAuth, signInWithEmailANdPassword } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js"
+//import { getFireStore} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-firestore.js"
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js"
 const firebaseConfig = {
     apiKey: "AIzaSyDIEtCfoSgt-Ka56fFwouFDvEXId0Xrk78",
     authDomain: "scan-a-lot.firebaseapp.com",
@@ -10,58 +12,37 @@ const firebaseConfig = {
     appId: "1:816922417821:web:ba0a3811f84a8cbbacd274",
     measurementId: "G-LVFHL8LFNV"
   };
-  //initialize firebase
 
-  const importFirebase = firebase.initializeApp(firebaseConfig);
 
-  const auth =  firebase.getAuth(importFirebase);
-
-  //<script src = "FirebaseRef.js"></script>
+  
+/**
+ * 
+ * email - the user input for email
+ * password - the user input for password
+ */
 
   function signIn(email, password){
-    const auth = getAuth();
+    //initialize the firebase app
+   const firebaseApp = initializeApp(firebaseConfig);
+   //get the get the authentication credentials to access our firebase app
+  const auth = getAuth(firebaseApp);
+  //use the firebase sign in with email method
 signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    // ...
-    
-    console.log("Successfully Signed In");
+  
+    console.log("User Successfully Signed In using " + email);
+    //TODO: direct user to next location 
+
+
   })
   .catch((error) => {
+    //if user failed to login with the right credentials this will occur
     const errorCode = error.code;
     const errorMessage = error.message;
+    console.log("Error Code: " + errorCode + " errorMesssage: " + errorMessage);
   });
   }
+  //just exporting this function called signIn to use in the other module in inde.html
   export {signIn};
-  //export signIn();
- // const app = initializeApp(firebaseConfig);
-// const officerList = document.querySelector('#officer-list');
-
-// function renderCafe(doc){
-//     let li = document.createElement('li');
-//     let Firstname = document.createElement('span');
-//     let Lastname = document.createElement('span');
-//     let Password = document.createElement('span');
-//     let Username = document.createElement('span');
-
-//     li.setAttribute('data-id', doc.id);
-//     Lastname.textContent = doc.data().Lastname;
-//     Firstname.textContent = doc.data.Firstname;
-
-//     li.appendChild(FirstName);
-//     li.appendChild(Lastname);
-
-//     officerList.appendChild(li);
-// }
-
-// db.collection('Officers').get().then((snapshot) => {
-//     snapshot.docs.forEach(doc => {
-//         console.log(doc.data())
-//     })
-// })
-function submitForm(e){
-    e.preventDefault();
-
-    console.log(123)
-}

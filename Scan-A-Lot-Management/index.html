@@ -3,6 +3,8 @@
   
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scan-A-Lot Management</title>
+  <link rel="icon" type="image/x-icon" href="Images/logo.webp"/>
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 form {border: 3px solid #f1f1f1;}
@@ -42,7 +44,8 @@ input[type=text], input[type=password] {
 }
 
 img.avatar {
-  width: 40%;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
 }
 
@@ -65,6 +68,7 @@ span.psw {
   .cancelbtn {
      width: 100%;
   }
+
  
 }
 
@@ -72,28 +76,23 @@ span.psw {
 </head>
 <body>
   
- <h2>Scan-A-Lot Admin Login</h2> 
+ 
 
   <div class="imgcontainer">
-    <img src="Images/logo.png" alt="Scan-A-Lot" class="avatar">
+    <img src="Images/logo.webp" alt="Scan-A-Lot" class="avatar">
   </div>
 
-
-<br>
-<br>
-<br>
-<br>
 <div id="login-box">
   <div class="left">
-    <h1 id='status'>login</h1>
+    <h1 id='status'>Login</h1>
     <input type="text" id="email" name="email" placeholder="E-mail" />
     <input type="password" id="password" name="password" placeholder="Password" />
 
    
      <input  type="submit" id='login' name="login" value="Login"  /> 
+  </div>  
     
-    
-  </div>
+</div>
 
   <script type="module">
     // Import the functions you need from the SDKs you need

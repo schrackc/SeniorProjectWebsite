@@ -31,8 +31,8 @@
     <a class="imgcontainer">
       <img src="Images/logo.webp" alt="Scan-A-Lot" class="avatar">
     </a>
-    <a class="logoutButton">
-      <button>Logout</button>
+    <a class="logoutButton" id="logoutButton">
+      <button onclick="window.location.href = 'index.html';">Logout</button>
     </a>
   </div>
   <h2>Scan-A-Lot Management</h2>
@@ -106,11 +106,37 @@
     }
     
     / Style the tab content */
-    .tabcontent {
+    .tabContent {
       display: none;
       padding: 6px 12px;
       border: 1px solid #ccc;
       border-top: none;
+    }
+
+    h3{
+      display: inline-flex;
+      font-size: 40px;
+      margin: 0px;
+      padding: 0px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h3 p{
+      margin: 0;
+    }
+
+    .tableTools{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 10px;
+      width: 80px;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      margin: 0%;
+      margin-left: 30px;
+      border-radius: 10%;
     }
   </style>
   
@@ -124,7 +150,7 @@
   </div>
 
 
-  <div id="Tickets" class="tabcontent">
+  <div id="Tickets" class="tabContent">
       <h3>Tickets</h3>
       <p><table>
         <tr>
@@ -215,18 +241,16 @@
       </p>
     </div>
     
-    <div id="Vehicles" class="tabcontent">
-      <h3>Vehicles</h3>
+    <div id="Vehicles" class="tabContent">
+      <h3>
+        <p>Vehicles</p>
+        <button class="tableTools">Add Vehicle</button>
+      </h3>
       <p>
         <table>
         <tr>
           <th>
             <p>Licence Plate</p>
-            <select class="form-control">
-              <option value="Add New">Add New</option>
-              <option value="Update">Update</option>
-              <option value="Delete">Delete</option>
-          </select>
             <img src="Images/FilterIcon.webp", class="filter"></img>
           </th>
           <th>
@@ -276,8 +300,11 @@
     </p> 
     </div>
     
-    <div id="Officers" class="tabcontent">
-      <h3>Officers</h3>
+    <div id="Officers" class="tabContent">
+      <h3>
+        <p>Officer</p>
+        <button class="tableTools">Add Officer</button>
+      </h3>
       <p>
         <table>
         <tr>
@@ -320,7 +347,7 @@
     </p>
     </div>
 
-    <div id="Parking Lot" class="tabcontent">
+    <div id="Parking Lot" class="tabContent">
       <h3>Parking Lot</h3>
       <p>
         <table>
@@ -352,7 +379,7 @@
       </table>
     </p> 
     </div>
-    <div id="Offense" class="tabcontent">        
+    <div id="Offense" class="tabContent">        
       <h3>Offense</h3>
       <p>
         <table>
@@ -392,10 +419,10 @@
     
     <script>
     function openCity(evt, cityName) {
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
+      var i, tabContent, tablinks;
+      tabContent = document.getElementsByClassName("tabContent");
+      for (i = 0; i < tabContent.length; i++) {
+        tabContent[i].style.display = "none";
       }
       tablinks = document.getElementsByClassName("tablinks");
       for (i = 0; i < tablinks.length; i++) {
@@ -410,7 +437,3 @@
     </html>
 
 </body>
-
-
-
-

@@ -70,7 +70,7 @@
       margin: 0px 0px;
       border: none;
       cursor: pointer;
-      width: 19.5%;
+      width: 10%;
     }
 
     
@@ -382,7 +382,7 @@
     <div id="Offense" class="tabContent">        
       <h3>Offense</h3>
       <p>
-        <table>
+       <table>
         <tr>
           <th>
             <p>Offense</p>
@@ -410,11 +410,37 @@
           <td>$1000.00</td>
         </tr>
         <tr>
-          <td>Boot</td>
-          <td>$150.00</td>
+          <td><a href="#" onclick="document.getElementById('dropdown2').style.display='block'">Boot</a>
+            <div id="dropdown2" style="display: none;">
+              <ul>
+                <li>Update</li>
+                <li>Delete</li>
+              </ul>
+            </div>
+          </td>
+          <td><a href="#" onclick="document.getElementById('dropdown2').style.display='block'">$150.00</a>
+            <div id="dropdown2" style="display: none;">
+              <ul>
+                <li>Update</li>
+                <li>Delete</li>
+              </ul>
+            </div>
+          </td>
         </tr>
       </table>
-    </p> 
+    </p>
+
+     <!-- <td><a href="#" onclick="document.getElementById('dropdown2').style.display='block'">$150.00</a>
+            <div id="dropdown2" style="display: none;">
+              <ul>
+                <li>Update</li>
+                <li>Delete</li>
+              </ul>
+            </div>
+          </td> -->
+      
+   
+
   </div>
     
     <script>

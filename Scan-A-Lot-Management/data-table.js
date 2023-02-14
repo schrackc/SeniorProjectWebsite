@@ -1,4 +1,4 @@
-function openCity(evt, cityName) {
+function openCity(evt, cityName) {          // change function name
     var i, tabContent, tablinks;
     tabContent = document.getElementsByClassName("tabContent");
     for (i = 0; i < tabContent.length; i++) {
@@ -11,3 +11,9 @@ function openCity(evt, cityName) {
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
 }
+
+
+
+/* $(document).ready(function() {
+  $('.my-div').show(); // or .css('display', 'block')
+}); */

@@ -33,10 +33,11 @@ table, th, td {
     /* Style the Logout Button */
     .logoutButton button{
       text-align: center;
-      width: 75px;
+      width: 90px;
       border: 0px, 0px;
       border-radius: 25%;
-      width: 100%
+      width: 100%;
+      font-weight: bold;
     }
     /* Style the tab button*/
     button {
@@ -49,6 +50,7 @@ table, th, td {
       border: none;
       cursor: pointer;
       width: 10%;
+      font-size: 20px;
     }
 
     
@@ -57,39 +59,42 @@ table, th, td {
     .tab {
       overflow: hidden;
       border: 1px solid #ccc;
-      background-color: #f1f1f1;
+     background-color: #f1f1f1; 
       width: 100%;
     }
     
-    /* Style the buttons inside the tab /
+   /* Style the buttons inside the tab */
     .tab button {
-      background-color: inherit;
+      background-color: rgb(98,0,238);
       float: left;
       border: none;
       outline: none;
       cursor: pointer;
       padding: 14px 16px;
       transition: 0.3s;
-      font-size: 17px;
+      font-size: 20px;
+      font-weight: bold;
+      height: 15%;
+
     }
     
-    / Change background color of buttons on hover /
+     /*Change background color of buttons on hover */
     .tab button:hover {
-      background-color: #ddd;
+      background-color: #ccc;
     }
     
-    / Create an active/current tablink class /
+     /*Create an active/current tablink class */
     .tab button.active {
       background-color: #ccc;
     }
     
-    / Style the tab content */
+    /*Style the tab content */
     .tabContent {
       display: none;
       padding: 6px 12px;
       border: 1px solid #ccc;
       border-top: none;
-    }
+    } 
 
     h3{
       display: inline-flex;

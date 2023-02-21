@@ -15,7 +15,7 @@ from selenium.webdriver.common.keys import Keys
 #Set Website
 driver.get("https://scan-a-lot-management.firebaseapp.com/")
 
-#find the id of the button
+
  
-#loginField = driver.find_element('/html/body/div[2]/div/input[3]').click()
+#Find login button based on the xpath
 driver.find_element(by=By.XPATH, value='/html/body/div[2]/div/input[3]').click()

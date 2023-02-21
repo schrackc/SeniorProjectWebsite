@@ -31,11 +31,12 @@ var password = document.getElementById('password').value;
      update(ref(database, 'users/' + user.uid),{
       last_login: dt,
     })
-    //links to next page here if user is logged in. Doesnt take to next page if user fails to enter valid credentials. 
+    //Links to next page here if user is logged in. Doesnt take to next page if user fails to enter valid credentials. 
     window.location.href='data-tables.html'
-     alert('User logged in!');
+     //alert('User logged in!');
   
   })
+  //If error result output
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;

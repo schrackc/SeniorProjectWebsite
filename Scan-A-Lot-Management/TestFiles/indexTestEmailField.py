@@ -6,6 +6,7 @@ from selenium.webdriver.chrome.options import Options
 options = Options()
 options.page_load_strategy = 'normal'
 driver = webdriver.Chrome(options=options)
+# driver = webdriver.Firefox()
 
 #Set Website
 driver.get("https://scan-a-lot-management.firebaseapp.com/")

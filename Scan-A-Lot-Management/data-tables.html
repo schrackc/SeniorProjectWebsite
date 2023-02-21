@@ -6,8 +6,7 @@
     <script src="data-table.js"></script>
   </head>
 
-  <body onload="openCity(event, 'Tickets')">
-
+  <body onload="openTable(event, 'Tickets')">
     <!--Header-->
     <div class="header">
       <a class="imgcontainer">
@@ -19,16 +18,16 @@
     </div>
     <h2>Scan-A-Lot Management</h2>
     
-      
+    <!--Tab Buttons to Select Table View-->
     <div class="tab">
-      <button class="tablinks" onclick="openCity(event, 'Tickets')">Tickets</button>  <!--target="_blank"-->
-      <button class="tablinks" onclick="openCity(event, 'Vehicles')">Vehicles</button>
-      <button class="tablinks" onclick="openCity(event, 'Officers')">Officers</button>
-      <button class="tablinks" onclick="openCity(event, 'Parking Lot')">Parking Lot</button>
-      <button class="tablinks" onclick="openCity(event, 'Offense')">Offense</button>
+      <button class="tablinks" onclick="openTable(event, 'Tickets')">Tickets</button>
+      <button class="tablinks" onclick="openTable(event, 'Vehicles')">Vehicles</button>
+      <button class="tablinks" onclick="openTable(event, 'Officers')">Officers</button>
+      <button class="tablinks" onclick="openTable(event, 'Parking Lot')">Parking Lot</button>
+      <button class="tablinks" onclick="openTable(event, 'Offense')">Offense</button>
     </div>
 
-
+    <!--Ticket Table-->
     <div id="Tickets" class="tabContent">
       <h3>
         <p>Tickets</p>
@@ -123,9 +122,11 @@
         </p>
     </div>
     
+    <!--Vehicle Table-->
     <div id="Vehicles" class="tabContent">
       <h3>
         <p>Vehicles</p>
+        <!--Add New Vehicle Button-->
         <button class="tableTools">Add Vehicle</button>
       </h3>
       <p>
@@ -183,56 +184,60 @@
     </p> 
     </div>
     
+    <!--Officer Table-->
     <div id="Officers" class="tabContent">
       <h3>
         <p>Officer</p>
+        <!--Add New Officer Button-->
         <button class="tableTools">Add Officer</button>
       </h3>
       <p>
         <table>
-        <tr>
-          <th>
-            <p>First Name</p>
-            <img src="Images/FilterIcon.webp", class="filter"></img>
-          </th>
-          <th>
-            <p>Last Name</p>
-            <img src="Images/FilterIcon.webp", class="filter"></img>
-          </th>
-          <th>
-            <p>Username</p>
-            <img src="Images/FilterIcon.webp", class="filter"></img>
-          </th>
-          <th>
-            <p>Password</p>
-            <img src="Images/FilterIcon.webp", class="filter"></img>
-          </th>
-        </tr>
-        <tr>
-          <td>Jake</td>
-          <td>Huges</td>
-          <td>OfficerJH</td>
-          <td>XXXXXX</td>
-        </tr>
-        <tr>
-          <td>Mary</td>
-          <td>Davis</td>
-          <td>OfficerMD</td>
-          <td>XXXXXX</td>
-        </tr>
-        <tr>
-          <td>William</td>
-          <td>Humfry</td>
-          <td>OfficerWH</td>
-          <td>XXXXXX</td>
-        </tr>
-      </table>
-    </p>
+          <tr>
+            <th>
+              <p>First Name</p>
+              <img src="Images/FilterIcon.webp", class="filter"></img>
+            </th>
+            <th>
+              <p>Last Name</p>
+              <img src="Images/FilterIcon.webp", class="filter"></img>
+            </th>
+            <th>
+              <p>Username</p>
+              <img src="Images/FilterIcon.webp", class="filter"></img>
+            </th>
+            <th>
+              <p>Password</p>
+              <img src="Images/FilterIcon.webp", class="filter"></img>
+            </th>
+          </tr>
+          <tr>
+            <td>Jake</td>
+            <td>Huges</td>
+            <td>OfficerJH</td>
+            <td>XXXXXX</td>
+          </tr>
+          <tr>
+            <td>Mary</td>
+            <td>Davis</td>
+            <td>OfficerMD</td>
+            <td>XXXXXX</td>
+          </tr>
+          <tr>
+            <td>William</td>
+            <td>Humfry</td>
+            <td>OfficerWH</td>
+            <td>XXXXXX</td>
+          </tr>
+        </table>
+      </p>
     </div>
 
+    <!--Parking Lot Table-->
     <div id="Parking Lot" class="tabContent">
       <h3>
         <p>Parking Lot</p>
+        <!--New Parking Lot Button-->
         <button class="tableTools">Add Parking Lot</button>
       </h3>
       <p>
@@ -265,8 +270,14 @@
         </table>
       </p> 
     </div>
+
+    <!--Officer Table-->
     <div id="Offense" class="tabContent">        
-      <h3>Offense</h3>
+      <h3>
+        <p>Offense</p>
+        <!--Add New Offense Button-->
+        <button class="tableTools">Add Offense</button>
+      </h3>
       <p>
        <table>
         <tr>

@@ -1,4 +1,6 @@
-<html>
+<!DOCTYPE html>
+<script type="module" src="firebaseLoginFunctions.js"></script>
+<html lang="en">
   <head>
     <title>Scan-A-Lot Management</title>
     <link rel="icon" type="image/x-icon" href="Images/logo.webp"/>
@@ -13,7 +15,7 @@
         <img src="Images/logo.webp" alt="Scan-A-Lot" class="avatar">
       </a>
       <a class="logoutButton" id="logoutButton">
-        <button onclick="window.location.href = 'index.html';">Logout</button>
+        <button id = "logout">Logout</button>
       </a>
     </div>
     <h2>Scan-A-Lot Management</h2>
@@ -28,7 +30,7 @@
     </div>
 
     <!--Ticket Table-->
-    <div id="Tickets" class="tabContent">
+    <div id="Tickets" class="tabContent" onload="openTable(event, 'Tickets')">
       <h3>
         <p>Tickets</p>
         <button class="tableTools">Add Tickets</button>

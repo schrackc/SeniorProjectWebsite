@@ -18,9 +18,10 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth();
 
+//Check If Authorized Login
 login.addEventListener('click',(e)=>{
-var email = document.getElementById('email').value;
-var password = document.getElementById('password').value;
+  var email = document.getElementById('email').value;
+  var password = document.getElementById('password').value;
 
   signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
@@ -33,7 +34,7 @@ var password = document.getElementById('password').value;
     })
     //Links to next page here if user is logged in. Doesnt take to next page if user fails to enter valid credentials. 
     window.location.href='data-tables.html'
-     alert('User logged in!');
+     //alert('User logged in!');
   
   })
   //If error result output

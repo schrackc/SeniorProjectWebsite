@@ -19,21 +19,20 @@ const database = getDatabase(app);
 
 
 //Check If User Signed In
-function checkLogin(){
+document.addEventListener("DOMContentLoaded", (loginStat) =>{
     const auth = getAuth();
+    //Checks if Authorized user is signed in
     onAuthStateChanged(auth, (user) => {
-        console.log("data from stateChanged: ", user);
         if(user == null) {
-            window.location = 'index.html'; //If User Is Not Logged In, Redirect To Login Page
+            window.location.href = 'index.html'; //If User Is Not Logged In, Redirect To Login Page
         }
       })
-}
+})
 
 //Logout out user
-logout.addEventListener('click', (e)=> {
+logout.addEventListener('click', (logoutResult)=> {
     const auth = getAuth();
+    //Turns authorized user to null
     auth.signOut();
-    window.location.href = 'index.html'
+    window.location.href = 'index.html';
   })
-
-checkLogin();

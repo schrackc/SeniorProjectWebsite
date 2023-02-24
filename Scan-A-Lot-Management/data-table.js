@@ -1,3 +1,4 @@
+//Functions:
 //Function makes a table visible while making the previous table invisible
 function openTable(evt, table) {
   var i, tabContent, tablinks;
@@ -10,5 +11,5 @@ function openTable(evt, table) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
   document.getElementById(table).style.display = "block";
-  evt.currentTarget.className += " active";
+  evt.currentTarget.className += "active";
 }

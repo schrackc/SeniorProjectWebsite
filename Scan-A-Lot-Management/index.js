@@ -18,9 +18,10 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth();
 
+//Check If Authorized Login
 login.addEventListener('click',(e)=>{
-var email = document.getElementById('email').value;
-var password = document.getElementById('password').value;
+  var email = document.getElementById('email').value;
+  var password = document.getElementById('password').value;
 
   signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {

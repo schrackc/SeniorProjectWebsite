@@ -16,22 +16,24 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const auth = getAuth();
 
 
 //Check If User Signed In
 document.addEventListener("DOMContentLoaded", (loginStat) =>{
-    const auth = getAuth();
     //Checks if Authorized user is signed in
     onAuthStateChanged(auth, (user) => {
-        if(user == null) {
-            window.location.href = 'index.html'; //If User Is Not Logged In, Redirect To Login Page
-        }
-      })
+      //Go Back to Login or if no user else show page information
+      if(user == null) {
+        window.location.href = 'index.html'; //If User Is Not Logged In, Redirect To Login Page
+      }else{
+        document.getElementById("webpage").style.visibility = "visible";
+      }
+    })
 })
 
 //Logout out user
 logout.addEventListener('click', (logoutResult)=> {
-    const auth = getAuth();
     //Turns authorized user to null
     auth.signOut();
     window.location.href = 'index.html';

@@ -31,4 +31,4 @@ action.send_keys("Rajah424!")
 action.perform()
 
 print('First Value:', passwordField.get_attribute('value'))
-
+driver.quit()

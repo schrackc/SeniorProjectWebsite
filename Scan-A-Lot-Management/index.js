@@ -18,7 +18,7 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth();
 
-//Check If Authorized Login
+//// Login in with login button
 login.addEventListener('click',(e)=>{
   var email = document.getElementById('email').value;
   var password = document.getElementById('password').value;
@@ -45,4 +45,33 @@ login.addEventListener('click',(e)=>{
     alert(errorMessage);
   });
 
+});
+
+// Login in with enter key
+document.addEventListener('keypress',(e)=>{
+  if(e.key == "Enter"){
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+  
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+  
+      const dt = new Date();
+       update(ref(database, 'users/' + user.uid),{
+        last_login: dt,
+      })
+      //links to next page here if user is logged in. Doesnt take to next page if user fails to enter valid credentials. 
+      window.location.href='data-tables.html'
+       //alert('User logged in!');
+    
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+  
+      alert(errorMessage);
+    });
+  }
 });

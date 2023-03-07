@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <script type="module" src="firebaseLoginFunctions.js"></script>
+<script type="module" src="FireBaseCollection.js"></script>
+<!-- to test if I can put the firebase API key here-->
+
+
+  
+ 
+
+
 <html lang="en" style="visibility: hidden;" id="webpage" >
   <head>
     <title>Scan-A-Lot Management</title>
     <link rel="icon" type="image/x-icon" href="Images/logo.webp"/>
     <link rel="stylesheet" href="data-table.css">
     <script src="data-table.js"></script>
-    
-    
+   
     
   </head>
+  
 
   <body onload="openTable(event, 'Tickets')">
     <!--Header-->
@@ -134,7 +142,8 @@
         <!--Add New Vehicle Button-->
         <button class="tableTools">Add Vehicle</button>
       </h3>
-      <p>
+      <!-- <p>
+
         <table>
         <tr>
           <th>
@@ -186,7 +195,126 @@
           <td>Malibu</td>
         </tr>
       </table>
-    </p> 
+    </p>  -->
+    <table>
+      <thead>
+        <th>Color</th> 
+        <th>ID</th> 
+        <th>License Number</th>   
+        <th>License State</th>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Owner First Name</th> 
+        <th>Owner Last Name</th>
+      </thead>
+      <tbody id="tbody2"></tbody>
+    </table>
+   
+    
+
+   <!--put script back below this -->
+   <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+
+
+<script id="MainScriptTwo">
+  const firebaseConfig = {
+   apiKey: "AIzaSyDIEtCfoSgt-Ka56fFwouFDvEXId0Xrk78",
+   authDomain: "scan-a-lot.firebaseapp.com",
+   databaseURL: "https://scan-a-lot-default-rtdb.firebaseio.com",
+   projectId: "scan-a-lot",
+   storageBucket: "scan-a-lot.appspot.com",
+   messagingSenderId: "816922417821",
+   appId: "1:816922417821:web:ba0a3811f84a8cbbacd274",
+   measurementId: "G-LVFHL8LFNV"
+ };
+ 
+ 
+
+firebase.initializeApp(firebaseConfig);
+      let ab= firebase.firestore();
+
+    
+      //Get data
+      function getAllDataOnce(){
+        ab.collection("Vehicles").get().then((querySnapshot)=>{
+          var Vehicles = [];
+          querySnapshot.forEach(doc => {
+            Vehicles.push(doc.data());
+          });
+          AddAllItemsToTheTable(Vehicles);
+        });
+      }
+  
+    
+      function getAllDataRealTime(){
+        ab.collection("Vehicles").onSnapshot((querySnapshot)=>{
+          var Vehicles = [];
+          querySnapshot.forEach(doc => {
+            Vehicles.push(doc.data());
+          });
+  
+          AddAllItemsToTheTable(Vehicles);
+        });
+      }
+     
+        //filling the table
+        var vehNo = 0;
+        var tbody = document.getElementById("tbody2");
+  
+        function AddItemToTable(Color, IDNum, LicenseNum, LicenseState, Make, Model, OwnerFirstName, OwnerLastName){
+          var trow = document.createElement('tr');
+          var td1 = document.createElement('td');
+          var td2 = document.createElement('td');
+          var td3 = document.createElement('td');
+          var td4 = document.createElement('td');
+          var td5 = document.createElement('td');
+          var td6 = document.createElement('td');
+          var td7 = document.createElement('td');
+          var td8 = document.createElement('td');
+          
+  
+          //td1.innerHTML = ++offNo;
+          
+          td1.innerHTML = Color;
+          td2.innerHTML = IDNum;
+          td3.innerHTML = LicenseNum;
+          td4.innerHTML = LicenseState;
+          td5.innerHTML = Make;
+          td6.innerHTML = Model;
+          td7.innerHTML = OwnerFirstName;
+          td8.innerHTML = OwnerLastName;
+  
+          trow.appendChild(td1);
+          trow.appendChild(td2);
+          trow.appendChild(td3);
+          trow.appendChild(td4);
+          trow.appendChild(td5);
+          trow.appendChild(td6);
+          trow.appendChild(td7);
+          trow.appendChild(td8);
+  
+          tbody.appendChild(trow);
+        }
+        function AddAllItemsToTheTable(VehicleDocList){
+          vehNo=0;
+          tbody.innerHTML="";
+          VehicleDocList.forEach(element => {
+            AddItemToTable(element.Color, element.IDNum, element.LicenseNum, element.LicenseState, element.Make, element.Model, element.OwnerFirstName, element.OwnerLastName);
+            
+          });
+  
+        }
+          //Once window loads it gets data from firestore
+      window.onload = getAllDataOnce;
+    
+    </script>
+
+
+
+
+
     </div>
     
     <!--Officer Table-->
@@ -251,92 +379,30 @@
       </thead>
       <tbody id="tbody1"></tbody>
     </table>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>     
+         
 
 
-      <script id="MainScript">
-       // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDIEtCfoSgt-Ka56fFwouFDvEXId0Xrk78",
-  authDomain: "scan-a-lot.firebaseapp.com",
-  databaseURL: "https://scan-a-lot-default-rtdb.firebaseio.com",
-  projectId: "scan-a-lot",
-  storageBucket: "scan-a-lot.appspot.com",
-  messagingSenderId: "816922417821",
-  appId: "1:816922417821:web:ba0a3811f84a8cbbacd274",
-  measurementId: "G-LVFHL8LFNV"
-};
-      firebase.initializeApp(firebaseConfig);
-      let db= firebase.firestore();
-      
-      
+    
 
-    //Get data
-    function getAllDataOnce(){
-      db.collection("Officers").get().then((querySnapshot)=>{
-        var Officers = [];
-        querySnapshot.forEach(doc => {
-          Officers.push(doc.data());
-        });
-        AddAllItemsToTheTable(Officers);
-      });
-    }
 
-  
-    function getAllDataRealTime(){
-      db.collection("Officers").onSnapshot((querySnapshot)=>{
-        var Officers = [];
-        querySnapshot.forEach(doc => {
-          Officers.push(doc.data());
-        });
-
-        AddAllItemsToTheTable(Officers);
-      });
-    }
-   
-      //filling the table
-      var offNo = 0;
-      var tbody = document.getElementById("tbody1");
-
-      function AddItemToTable(LastName, FirstName, Username, Email){
-        var trow = document.createElement('tr');
-        var td1 = document.createElement('td');
-        var td2 = document.createElement('td');
-        var td3 = document.createElement('td');
-        var td4 = document.createElement('td');
-
-        //td1.innerHTML = ++offNo;
-        
-        td1.innerHTML = LastName;
-        td2.innerHTML = FirstName;
-        td3.innerHTML = Username;
-        td4.innerHTML = Email;
-
-        trow.appendChild(td1);
-        trow.appendChild(td2);
-        trow.appendChild(td3);
-        trow.appendChild(td4);
-
-        tbody.appendChild(trow);
-      }
-      function AddAllItemsToTheTable(OfficerDocList){
-        offNo=0;
-        tbody.innerHTML="";
-        OfficerDocList.forEach(element => {
-          AddItemToTable(element.LastName, element.FirstName, element.Username, element.Email);
-          
-        });
-
-      }
-        //Once window loads it gets data from firestore
-    window.onload = getAllDataOnce;
-  
-  </script>
   </body>
-</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!--Parking Lot Table-->
     <div id="Parking Lot" class="tabContent">

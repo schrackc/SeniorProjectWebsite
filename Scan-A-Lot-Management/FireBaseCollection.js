@@ -1,5 +1,3 @@
-
-
 src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"
 src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"
 src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"   
@@ -17,6 +15,8 @@ const firebaseConfig = {
   appId: "1:816922417821:web:ba0a3811f84a8cbbacd274",
   measurementId: "G-LVFHL8LFNV"
 };
+
+
       firebase.initializeApp(firebaseConfig);
       let db= firebase.firestore();
       

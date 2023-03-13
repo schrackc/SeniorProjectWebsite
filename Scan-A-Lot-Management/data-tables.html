@@ -46,7 +46,6 @@
     <div id="Tickets" class="tabContent" onload="openTable(event, 'Tickets')">
       <h3>
         <p>Tickets</p>
-        <button class="tableTools">Add Tickets</button>
       </h3>
         <p><table>
           <tr>
@@ -67,10 +66,6 @@
               <img src="Images/FilterIcon.webp", class="filter"></img>
             </th>
             <th>
-              <p>Plate Number</p>
-              <img src="Images/FilterIcon.webp", class="filter"></img>
-            </th>
-            <th>
               <p>Car Make</p>
               <img src="Images/FilterIcon.webp", class="filter"></img>
             </th>
@@ -79,7 +74,19 @@
               <img src="Images/FilterIcon.webp", class="filter"></img>
             </th>
             <th>
+              <p>License Number</p>
+              <img src="Images/FilterIcon.webp", class="filter"></img>
+            </th>
+            <th>
               <p>Offense</p>
+              <img src="Images/FilterIcon.webp", class="filter"></img>
+            </th>
+            <th>
+              <p>Fine Amount</p>
+              <img src="Images/FilterIcon.webp", class="filter"></img>
+            </th>
+            <th>
+              <p>Void</p>
               <img src="Images/FilterIcon.webp", class="filter"></img>
             </th>
           </tr>
@@ -88,9 +95,9 @@
             <td>22:34</td>
             <td>Davis</td>
             <td>Lot C</td>
-            <td>XXXX-0000</td>
             <td>Honda</td>
             <td>Civic</td>
+            <td>XXXX-0000</td>
             <td>XXX</td>
           </tr>
           <tr>
@@ -98,9 +105,9 @@
             <td>12:53</td>
             <td>Davis</td>
             <td>Lot F</td>
-            <td>XXXX-0000</td>
             <td>Toyota</td>
             <td>Avalon</td>
+            <td>XXXX-0000</td>
             <td>XXX</td>
           </tr>
           <tr>
@@ -108,9 +115,9 @@
             <td>1:04</td>
             <td>Humfry</td>
             <td>Lot B</td>
-            <td>XXXX-0000</td>
             <td>Tesla</td>
             <td>Model B</td>
+            <td>XXXX-0000</td>
             <td>XXX</td>
           </tr>
           <tr>
@@ -118,9 +125,9 @@
             <td>13:57</td>
             <td>Humfry</td>
             <td>Lot H</td>
-            <td>XXXX-0000</td>
             <td>Kia</td>
             <td>Forte</td>
+            <td>XXXX-0000</td>
             <td>XXX</td>
           </tr>
           <tr>
@@ -128,9 +135,9 @@
             <td>4:36</td>
             <td>Humfry</td>
             <td>Lot E</td>
-            <td>XXXX-0000</td>
             <td>Chevrolet</td>
             <td>Malibu</td>
+            <td>XXXX-0000</td>
             <td>XXX</td>
           </tr>
         </table>
@@ -262,9 +269,6 @@ firebase.initializeApp(firebaseConfig1);
       window.onload = getAllDataOnce;
     
     </script>
-
-
-
 
 
     </div>
@@ -411,23 +415,28 @@ firebase.initializeApp(firebaseConfig1);
             </th>
 
             <th>
-              <p>License Plate</p>
+              <p>Max Longitude</p>
               <img src="Images/FilterIcon.webp", class="filter"></img>
             </th>
             <th>
-                <p>Car Make</p>
+                <p>Min Longitude</p>
                 <img src="Images/FilterIcon.webp", class="filter"></img>
             </th>
             <th>
-              <p>Car Model</p>
+              <p>Max Latitude</p>
+              <img src="Images/FilterIcon.webp", class="filter"></img>
+            </th>
+            <th>
+              <p>Min Latitude</p>
               <img src="Images/FilterIcon.webp", class="filter"></img>
             </th>
           </tr>
           <tr>
             <td>Lot F</td>
-            <td>XXXX-0000</td>
-            <td>Honda</td>
-            <td>Civic</td>
+            <td>1000.02</td>
+            <td>1000.0001</td>
+            <td>75.89</td>
+            <td>75.80</td>
           </tr>
         </table>
       </p> 
@@ -467,20 +476,34 @@ firebase.initializeApp(firebaseConfig1);
         <tr>
           <td>Parked in Fire Lane</td>
           <td>$1000.00</td>
+          <td>
+            <div class="dropdown">
+              <button class="dropbtn">Modify</button>
+              <div class="dropdown-content">
+                <a href="#">Edit</a>
+                <a href="#">Delete</a>
+              </div>
+          </td>
+          
         </tr>
         <tr>
-          <td><a href="#" onclick="document.getElementById('dropdown2').style.display='block'">Boot</a>
-            <div id="dropdown2" style="display: none;">
-              <ul>
-                <li>Update</li>
-                <li>Delete</li>
-              </ul>
-            </div>
-          </td>
-          <td><a href="#" onclick="document.getElementById('dropdown2').style.display='block'">$150.00</a>
-            <div id="dropdown2" style="display: none;">
-              <ul>
-                <li>Update</li>
+          <td>Boot</td>
+          <td>$150.00</td>
+          <td>
+            <!--<div class="dropdown">
+              <div class="select">
+                <span class="selected">E/D</span>
+                <div class="caret"></div>
+              </div> -->
+              <div class="dropdown">
+                <button class="dropbtn">Modify</button>
+                <div class="dropdown-content">
+                  <a href="#">Edit</a>
+                  <a href="#">Delete</a>
+                </div>
+              </div>
+              <ul class="menu">
+                <li>Edit</li>
                 <li>Delete</li>
               </ul>
             </div>
@@ -488,9 +511,6 @@ firebase.initializeApp(firebaseConfig1);
         </tr>
       </table>
     </p>
-
-     
-      
     </div>
   </body>
 </html>

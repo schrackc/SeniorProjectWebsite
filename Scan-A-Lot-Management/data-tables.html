@@ -289,79 +289,114 @@
       </table>
     </p> 
     </div>
+
     
     <!--Officer Table-->
+    
     <div id="Officers" class="tabContent">
       <h3>
-        <p>Officer</p>
-        <!--Add New Officer Button-->
+        <p>Officers</p>
+        <!--Add New Vehicle Button-->
         <button class="tableTools">Add Officer</button>
       </h3>
-      <p>
-        <table>
-          <tr>
-            <th>
-              <p>First Name</p>
-              <img src="Images/FilterIcon.webp", class="filter"></img>
-            </th>
-            <th>
-              <p>Last Name</p>
-              <img src="Images/FilterIcon.webp", class="filter"></img>
-            </th>
-            <th>
-              <p>Username</p>
-              <img src="Images/FilterIcon.webp", class="filter"></img>
-            </th>
-            <th>
-              <p>Password</p>
-              <img src="Images/FilterIcon.webp", class="filter"></img>
-            </th>
-          </tr>
-          <tr>
-            <td>Jake</td>
-            <td>Huges</td>
-            <td>OfficerJH</td>
-            <td>XXXXXX</td>
-            <td>
-              <div class="dropdown">
-                <button class="dropbtn">Modify</button>
-                <div class="dropdown-content">
-                  <a href="#">Edit</a>
-                  <a href="#">Delete</a>
-                </div>
-            </td>
-          </tr>
-          <tr>
-            <td>Mary</td>
-            <td>Davis</td>
-            <td>OfficerMD</td>
-            <td>XXXXXX</td>
-            <td>
-              <div class="dropdown">
-                <button class="dropbtn">Modify</button>
-                <div class="dropdown-content">
-                  <a href="#">Edit</a>
-                  <a href="#">Delete</a>
-                </div>
-            </td>
-          </tr>
-          <tr>
-            <td>William</td>
-            <td>Humfry</td>
-            <td>OfficerWH</td>
-            <td>XXXXXX</td>
-            <td>
-              <div class="dropdown">
-                <button class="dropbtn">Modify</button>
-                <div class="dropdown-content">
-                  <a href="#">Edit</a>
-                  <a href="#">Delete</a>
-                </div>
-            </td>
-          </tr>
-        </table>
-      </p>
-    </div>
+    <table  class="table table-dark">
+      <thead>
+        <th>Last Name</th> 
+        <th>First Name</th> 
+        <th>Username</th>   
+        <th>Email</th> 
+      </thead>
+      <tbody id="tbody1"></tbody>
+    </table> 
+  </div>
+  
+  
+  
+       <!--Firestore Libraries-->
+  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>     
+  
+  
+        <script id="MainScript">
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig2 = {
+    apiKey: "AIzaSyDIEtCfoSgt-Ka56fFwouFDvEXId0Xrk78",
+    authDomain: "scan-a-lot.firebaseapp.com",
+    databaseURL: "https://scan-a-lot-default-rtdb.firebaseio.com",
+    projectId: "scan-a-lot",
+    storageBucket: "scan-a-lot.appspot.com",
+    messagingSenderId: "816922417821",
+    appId: "1:816922417821:web:ba0a3811f84a8cbbacd274",
+    measurementId: "G-LVFHL8LFNV"
+  };
+        firebase.initializeApp(firebaseConfig2);
+        let db= firebase.firestore();
+        
+        
+  
+      //Get data
+      function getAllDataOnce(){
+        db.collection("Officers").get().then((querySnapshot)=>{
+          var Officers = [];
+          querySnapshot.forEach(doc => {
+            Officers.push(doc.data());
+          });
+          AddAllItemsToTheTable(Officers);
+        });
+      }
+  
+    
+      function getAllDataRealTime(){
+        db.collection("Officers").onSnapshot((querySnapshot)=>{
+          var Officers = [];
+          querySnapshot.forEach(doc => {
+            Officers.push(doc.data());
+          });
+  
+          AddAllItemsToTheTable(Officers);
+        });
+      }
+     
+        //filling the table
+        var offNo = 0;
+        var tbody = document.getElementById("tbody1");
+  
+        function AddItemToTable(LastName, FirstName, Username, Email){
+          var trow = document.createElement('tr');
+          var td1 = document.createElement('td');
+          var td2 = document.createElement('td');
+          var td3 = document.createElement('td');
+          var td4 = document.createElement('td');
+  
+          //td1.innerHTML = ++offNo;
+          
+          td1.innerHTML = LastName;
+          td2.innerHTML = FirstName;
+          td3.innerHTML = Username;
+          td4.innerHTML = Email;
+  
+          trow.appendChild(td1);
+          trow.appendChild(td2);
+          trow.appendChild(td3);
+          trow.appendChild(td4);
+  
+          tbody.appendChild(trow);
+        }
+        function AddAllItemsToTheTable(OfficerDocList){
+          offNo=0;
+          tbody.innerHTML="";
+          OfficerDocList.forEach(element => {
+            AddItemToTable(element.LastName, element.FirstName, element.Username, element.Email);
+            
+          });
+  
+        }
+          //Once window loads it gets data from firestore
+      window.onload = getAllDataOnce;
+    
+    </script>
 
     <!--Parking Lot Table-->
     <div id="Parking Lot" class="tabContent">
@@ -510,3 +545,5 @@
   </body>
 </html>
     
+
+

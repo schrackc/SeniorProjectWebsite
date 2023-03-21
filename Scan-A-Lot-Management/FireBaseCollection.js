@@ -1,5 +1,5 @@
 
-//This will be the collection for Officers. Will make a new JS file unique for each other table. 
+
 
 //src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js";
 
@@ -101,7 +101,7 @@
      
       //filling the table
       var offNo = 0;
-      var tOfficerbody = document.getElementById("tbody1");
+      var tOfficerbody = document.getElementById("tbody3");
 
       function AddItemToOfficerTable(LastName, FirstName, Username, Email){
         var trow = document.createElement('tr');
@@ -250,7 +250,7 @@
        
        function AddAllItemsToTheVehiclesTable(VehiclesDocList){
          offNo=0;
-         tVehiclesbody.innerHTML="i";
+         tVehiclesbody.innerHTML="";
          VehiclesDocList.forEach(element => {
            AddItemToVehiclesTable(element.Color, element.IDNum, element.LicenseNum, element.LicenseState, element.Make, element.Model, element.OwnerFirstName, element.OwnerLastName, element.ParkingLot);
            

@@ -61,6 +61,14 @@
           });
           AddAllItemsToTheVehiclesTable(Vehicles);
         });
+        //Tickets
+        db.collection("Tickets").get().then((querySnapshot)=>{
+          var Tickets = [];
+          querySnapshot.forEach(doc => {
+            Tickets.push(doc.data());
+          });
+          AddAllItemsToTheTicketsTable(Tickets);
+        });
       }
   
     /////////////////////////////////////////////
@@ -96,6 +104,14 @@
           });
   
           AddAllItemsToTheVehiclesTable(Vehicles);
+        });
+        db.collection("Tickets").onSnapshot((querySnapshot)=>{
+          var Tickets = [];
+          querySnapshot.forEach(doc => {
+            Tickets.push(doc.data());
+          });
+  
+          AddAllItemsToTheTicketsTable(Tickets);
         });
       }
      
@@ -253,6 +269,60 @@
          tVehiclesbody.innerHTML="";
          VehiclesDocList.forEach(element => {
            AddItemToVehiclesTable(element.Color, element.IDNum, element.LicenseNum, element.LicenseState, element.Make, element.Model, element.OwnerFirstName, element.OwnerLastName, element.ParkingLot);
+           
+         });
+ 
+       }
+       //filling the table
+       var offNo = 0;
+       var tTicketsbody = document.getElementById("tbody6");
+ 
+       function AddItemToTicketsTable(CarMake, CarModel, FineAmount, LicenseNum, Offense, Officer, ParkingLot, TicketNum, Time){
+         var trow = document.createElement('tr');
+         var td1 = document.createElement('td');
+         var td2 = document.createElement('td');
+         var td3 = document.createElement('td');
+         var td4 = document.createElement('td');
+         var td5 = document.createElement('td');
+         var td6 = document.createElement('td');
+         var td7 = document.createElement('td');
+         var td8 = document.createElement('td');
+         var td9 = document.createElement('td');
+         
+ 
+         //td1.innerHTML = ++offNo;
+         
+         td1.innerHTML = CarMake;
+         td2.innerHTML = CarModel;
+         td3.innerHTML = FineAmount;
+         td4.innerHTML = LicenseNum;
+         td5.innerHTML = Offense;
+         td6.innerHTML = Officer;
+         td7.innerHTML = ParkingLot;
+         td8.innerHTML = TicketNum;
+         td9.innerHTML = Time;
+         
+ 
+         trow.appendChild(td1);
+         trow.appendChild(td2);
+         trow.appendChild(td3);
+         trow.appendChild(td4);
+         trow.appendChild(td5);
+         trow.appendChild(td6);
+         trow.appendChild(td7);
+         trow.appendChild(td8);
+         trow.appendChild(td9);
+         
+ 
+         tTicketsbody.appendChild(trow);
+         
+       }
+       
+       function AddAllItemsToTheTicketsTable(TicketsDocList){
+         offNo=0;
+         tTicketsbody.innerHTML="";
+         TicketsDocList.forEach(element => {
+           AddItemToTicketsTable(element.CarMake, element.CarModel, element.FineAmount, element.LicenseNum, element.Offense, element.Officer, element.ParkingLot, element.TicketNum, element.Time);
            
          });
  

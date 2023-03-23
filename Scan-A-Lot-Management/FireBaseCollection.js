@@ -273,7 +273,7 @@
          });
  
        }
-       //filling the table
+       //filling the tickets
        var offNo = 0;
        var tTicketsbody = document.getElementById("tbody6");
  

@@ -2,7 +2,7 @@
 <script type="module" src="firebaseLoginFunctions.js"></script>
 <!--Firestore script-->
 <script type="module" src="FireBaseCollection.js"></script>
-
+<script src="addButton.js"></script>
 
 <html lang="en" style="visibility: hidden;" id="webpage" >
   <head>
@@ -25,7 +25,7 @@
     <h2>Scan-A-Lot Management</h2>
     
     <!--Tab Buttons to Select Table View-->
-    <div class="tab">
+    <div class="tab" onload="openTable(event, 'Tickets')">
       <button class="tablinks" onclick="openTable(event, 'Tickets')">Tickets</button>
       <button class="tablinks" onclick="openTable(event, 'Vehicles')">Vehicles</button>
       <button class="tablinks" onclick="openTable(event, 'Officers')">Officers</button>
@@ -34,28 +34,24 @@
     </div>
 
     <!--Ticket Table-->
-    <div id="Tickets" class="tabContent" onload="openTable(event, 'Tickets')">
+    <div id="Tickets" class="tabContent">
       <h3>
         <p>Tickets</p>
       </h3>
-
-          <table>
-            <thead>
+      <table>
+          <thead>
             <th>CarMake</th> 
-          <th>CarModel</th>   
-          <th>FineAmount</th> 
-          <th>TicketNum</th> 
-          <th>Offense </th>   
-          <th>Officer</th> 
-          <th>ParkingLot</th> 
-          <th>TicketNum</th>   
-          <th>Time</th> 
-        
-      </thead>
-      <tbody id="tbody1"></tbody>
-    </table>
-       
-
+            <th>CarModel</th>   
+            <th>FineAmount</th> 
+            <th>TicketNum</th> 
+            <th>Offense </th>   
+            <th>Officer</th> 
+            <th>ParkingLot</th> 
+            <th>TicketNum</th>   
+            <th>Time</th> 
+          </thead>
+          <tbody id="tbody1"></tbody>
+      </table>
     </div>
     
     <!--Vehicle Table-->
@@ -66,44 +62,62 @@
         <button class="tableTools">Add Vehicle</button>
       </h3>
     
-        <table>
-          <thead>
-          <th>Color</th> 
-        <th>ID Number</th>   
-        <th>License Number</th> 
-        <th>State</th> 
-        <th>Make </th>   
-        <th>Model</th> 
-        <th>First Name</th> 
-        <th>Last Name</th>   
-        <th>Parking Lot</th> 
-      
-    </thead>
-    <tbody id="tbody2"></tbody>
-  </table>
+      <table>
+        <thead>
+          <th>Color</th>
+          <th>ID Number</th>
+          <th>License Number</th>
+          <th>State</th>
+          <th>Make </th>
+          <th>Model</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Parking Lot</th>
+    
+        </thead>
+        <tbody id="tbody2"></tbody>
+      </table>
     </div>
-
     
     <!--Officer Table-->
-    
     <div id="Officers" class="tabContent">
       <h3>
         <p>Officers</p>
         <!--Add New Vehicle Button-->
-        <button class="tableTools">Add Officer</button>
+        <button class="tableTools" onclick="addPopup('addOfficerPopup')">Add Officer</button>
       </h3>
-    <table  class="table table-dark">
-      <thead>
-        <th>Last Name</th> 
-        
+
+      <!--Popup Box When Adding New Officer-->
+      <div class="popup">
+        <div class="popuptext" id='addOfficerPopup'>
+          <!--Fill Boxes for Officer Add Officer Fields-->
+          <h4>First Name:</h4>
+          <input type="text" id="firstName" placeholder="First Name" class="popupInsertBox"/>
+          <h4>Last Name:</h4>
+          <input type="text" id="lastName" placeholder="Last Name" class="popupInsertBox"/>
+          <h4>Email:</h4>
+          <input type="text" id="email" placeholder="E-mail" class="popupInsertBox"/>
+          <h4>Password:</h4>
+          <input type="password" id="password" placeholder="Password" class="popupInsertBox"/>
+          <h4>Confirm Password</h4>
+          <input type="password" id="password2" placeholder="Confirm Password" class="popupInsertBox"/>
           
-        <th>First Name</th> 
-        <th>Username</th>   
-        <th>Email</th> 
-      </thead>
-      <tbody id="tbody3"></tbody>
-    </table> 
-  </div>
+          <!--Cancel Buttons and Add new Officer Button-->
+          <button class="popupCancelButton" onclick="addPopup('addOfficerPopup')">Cancel</button>
+          <button class="popupUpdateButton" onclick="createOfficers('addOfficerPopup')">Add Officer</button>
+        </div>
+      </div>
+      <!--Officer Data Table-->
+      <table  class="table table-dark">
+        <thead>
+          <th>Last Name</th> 
+          <th>First Name</th> 
+          <th>Username</th>   
+          <th>Email</th> 
+        </thead>
+        <tbody id="tbody3"></tbody>
+      </table> 
+    </div>
 
     <!--Parking Lot Table-->
     <div id="Parking Lot" class="tabContent">
@@ -112,8 +126,7 @@
         <!--New Parking Lot Button-->
         <button class="tableTools">Add Parking Lot</button>
       </h3>
-      <p>
-        <table>
+      <table>
           <thead>
             <th>Lot Name</th>
             <th>Max Latitude</th>
@@ -122,8 +135,7 @@
             <th>Min Longitude</th>
           </thead>
           <tbody id="tbody4"></tbody>
-        </table>
-      </p> 
+      </table>
     </div>
 
     <!--Officer Table-->
@@ -133,7 +145,6 @@
         <!--Add New Offense Button-->
         <button class="tableTools">Add Offense</button>
       </h3>
-      <p>
        <table>
         <thead>
         <th>Offense Type</th>
@@ -141,11 +152,7 @@
       </thead>
       <tbody id="tbody5"></tbody>
       </table>
-    </p>
     </div>
    <!-- <script type="module" src="OffensesCollection.js"></script>  -->
   </body>
 </html>
-    
-
-

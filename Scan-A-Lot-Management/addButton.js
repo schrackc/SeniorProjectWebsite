@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-import { getFirestore, collection, getDocs, doc} from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js';
+import { getFirestore, collection, getDocs, doc, setDoc} from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js';
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 
 const firebaseConfig = {
@@ -16,10 +16,17 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
 
+var arrOfficers = [];
+//Get Firestore Officers Collection
+const querySnapshotOfficers = await getDocs(collection(db, "Officers"))
+querySnapshotOfficers.forEach((doc) => {
+  arrOfficers.push(doc.data());
+});
+
 // When the User Clicks add Officer Popup Form Appears
 function addPopups(strTableAddType) {
     let popup = document.getElementById(strTableAddType);
-    popup.classList.toggle("show");
+    popup.classList.add("show");
 };
 
 // Popup Add Vehicle Button Clicked
@@ -38,7 +45,7 @@ function closeVehicle() {
 }
 
 // Popup Add Officer Button Clicked
-function createOfficer() {
+async function createOfficer() {
     //Get letiabletOfficerBody
     let strFirstName = String(document.getElementById("firstName").value);
     let strLastName = String(document.getElementById("lastName").value);
@@ -81,15 +88,30 @@ function createOfficer() {
     //Create New Firebase Authentication Account
     createUserWithEmailAndPassword(auth, strEmail, strPassword);
 
-    //Create new officer Account
 
+    //Create new officer to FireStore
+    var strDocName;
+    if (arrOfficers[arrOfficers.length - 1].OfficerID + 1 < 10){
+        strDocName = "Off00" + String(arrOfficers[arrOfficers.length - 1].OfficerID + 1);
+    }else if(arrOfficers[arrOfficers.length - 1].OfficerID + 1 < 100){
+        strDocName = "Off0" + String(arrOfficers[arrOfficers.length - 1].OfficerID + 1);
+    }else{
+        strDocName = "Off" + String(arrOfficers[arrOfficers.length - 1].OfficerID + 1);
+    }
+    await setDoc(doc(db, "Officers", strDocName), {
+        OfficerID: arrOfficers[arrOfficers.length - 1].OfficerID + 1,
+        FirstName: strFirstName,
+        LastName: strLastName,
+        Email: strEmail,
+        UserName: strLastName + strFirstName.charAt(0)
+    });
 
     //Clear Values
-    strFirstName.innerHTML = "";
-    strLastName.innerHTML = "";
-    strEmail.innerHTML = "";
-    strPassword.innerHTML = "";
-    strPasswordConfirm.innerHTML = "";
+    document.getElementById("firstName").value = "";
+    document.getElementById("lastName").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("password2").value = "";
 
     //Close Popup
     let popup = document.getElementById("addOfficerPopup");

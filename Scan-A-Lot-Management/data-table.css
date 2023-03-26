@@ -316,6 +316,11 @@ button {
   margin-right: 0px;
 }
 
+#popupOfficerWarning{
+  text-align: center;
+  color: red;
+}
+
 /* Toggle this class when clicking on the popup container (hide and show the popup) */
 .popup .show {
   visibility: visible;

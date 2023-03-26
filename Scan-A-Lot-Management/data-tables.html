@@ -2,7 +2,7 @@
 <script type="module" src="firebaseLoginFunctions.js"></script>
 <!--Firestore script-->
 <script type="module" src="FireBaseCollection.js"></script>
-<script src="addButton.js"></script>
+<script type="module" src="addButton.js"></script>
 
 <html lang="en" style="visibility: hidden;" id="webpage" >
   <head>
@@ -84,7 +84,7 @@
       <h3>
         <p>Officers</p>
         <!--Add New Vehicle Button-->
-        <button class="tableTools" onclick="addPopup('addOfficerPopup')">Add Officer</button>
+        <button class="tableTools" id='addOfficerButton'>Add Officer</button>
       </h3>
 
       <!--Popup Box When Adding New Officer-->
@@ -102,9 +102,12 @@
           <h4>Confirm Password</h4>
           <input type="password" id="password2" placeholder="Confirm Password" class="popupInsertBox"/>
           
+          <!--Popup Issue Warning-->
+          <div id="popupOfficerWarning"></div>
+
           <!--Cancel Buttons and Add new Officer Button-->
-          <button class="popupCancelButton" onclick="addPopup('addOfficerPopup')">Cancel</button>
-          <button class="popupUpdateButton" onclick="createOfficers('addOfficerPopup')">Add Officer</button>
+          <button class="popupCancelButton" id="popupOfficerCancel">Cancel</button>
+          <button class="popupUpdateButton" id="popupOfficerUpdateButton">Add Officer</button>
         </div>
       </div>
       <!--Officer Data Table-->
@@ -153,6 +156,5 @@
       <tbody id="tbody5"></tbody>
       </table>
     </div>
-   <!-- <script type="module" src="OffensesCollection.js"></script>  -->
   </body>
 </html>

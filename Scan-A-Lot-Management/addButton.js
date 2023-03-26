@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
 import { getFirestore, collection, getDocs, doc, setDoc} from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js';
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+import { arrVehicles, arrOfficers, arrLots, arrOffenses } from "./FireBaseCollection.js"; 
 
 const firebaseConfig = {
     apiKey: "AIzaSyDIEtCfoSgt-Ka56fFwouFDvEXId0Xrk78",
@@ -12,18 +13,11 @@ const firebaseConfig = {
     measurementId: "G-LVFHL8LFNV"
   };
 
-const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-var arrOfficers = [];
-//Get Firestore Officers Collection
-const querySnapshotOfficers = await getDocs(collection(db, "Officers"))
-querySnapshotOfficers.forEach((doc) => {
-  arrOfficers.push(doc.data());
-});
-
-// When the User Clicks add Officer Popup Form Appears
+// When The User Clicks Add Officer Popup Form Appears
 function addPopups(strTableAddType) {
     let popup = document.getElementById(strTableAddType);
     popup.classList.add("show");
@@ -31,7 +25,7 @@ function addPopups(strTableAddType) {
 
 // Popup Add Vehicle Button Clicked
 function createVehicle() {
-    //Close Popup
+    //close popup
     let popup = document.getElementById("addVehiclePopup");
     popup.classList.remove("show");
 };
@@ -44,19 +38,18 @@ function closeVehicle() {
     popup.classList.remove("show");
 }
 
-// Popup Add Officer Button Clicked
+// Popup Add Officer Button Clicked Check Values And Add An Officer To Database
 async function createOfficer() {
-    //Get letiabletOfficerBody
     let strFirstName = String(document.getElementById("firstName").value);
     let strLastName = String(document.getElementById("lastName").value);
     let strEmail = String(document.getElementById("email").value);
     let strPassword = String(document.getElementById("password").value);
     let strPasswordConfirm = String(document.getElementById("password2").value);
 
-    //Check If Password Meets Requirements 
-    //Meets Lengeth Requirements
+    //Check if password meets requirements 
+    //Meets length requirements
     if (strPassword.length < 8){
-        //Alert User of Pasword Not Meeting Requirements
+        //Alert user of password not meeting requirements
         let warningMessage = document.getElementById("popupOfficerWarning");
         warningMessage.innerHTML = "Passwords Require 8 Chracters";
         return
@@ -71,25 +64,26 @@ async function createOfficer() {
     if (Boolean(strPassword.match(/[0-9]/))) numeric = false
 
     if (capLetter || lowerLetter || numeric){
-        //Alert User of Pasword Not Meeting Requirements
+        //Alert user of password not meeting requirements
         let warningMessage = document.getElementById("popupOfficerWarning");
         warningMessage.innerHTML = "Password Does Not Meet Requirements: Provide at least one capital letter, one lower case letter and one number";
         return
     }
 
-    //Check If Password Match
+    //Check if password match
     if (strPassword != strPasswordConfirm){
-        //Alert User of Non Matching Passwords
+        //Alert user of non matching passwords
         let warningMessage = document.getElementById("popupOfficerWarning");
         warningMessage.innerHTML = "Password Fields Do Not Match";
         return
     }
 
-    //Create New Firebase Authentication Account
+    //Create new firebase authentication account
     createUserWithEmailAndPassword(auth, strEmail, strPassword);
 
 
-    //Create new officer to FireStore
+    //Create new officer to fireStore
+    //Determine Document ID
     var strDocName;
     if (arrOfficers[arrOfficers.length - 1].OfficerID + 1 < 10){
         strDocName = "Off00" + String(arrOfficers[arrOfficers.length - 1].OfficerID + 1);
@@ -98,6 +92,7 @@ async function createOfficer() {
     }else{
         strDocName = "Off" + String(arrOfficers[arrOfficers.length - 1].OfficerID + 1);
     }
+    //Create new Document to Officers Collection
     await setDoc(doc(db, "Officers", strDocName), {
         OfficerID: arrOfficers[arrOfficers.length - 1].OfficerID + 1,
         FirstName: strFirstName,
@@ -106,14 +101,15 @@ async function createOfficer() {
         UserName: strLastName + strFirstName.charAt(0)
     });
 
-    //Clear Values
+    //Clear values
     document.getElementById("firstName").value = "";
     document.getElementById("lastName").value = "";
     document.getElementById("email").value = "";
     document.getElementById("password").value = "";
     document.getElementById("password2").value = "";
+    document.getElementById("popupOfficerWarning").value = "";
 
-    //Close Popup
+    //Close popup
     let popup = document.getElementById("addOfficerPopup");
     popup.classList.remove("show");
 }
@@ -121,18 +117,19 @@ async function createOfficer() {
 // Closes Officer Table
 function closeOfficer() {
     let popup = document.getElementById("addOfficerPopup");
-    //reset table values
+    //Reset table values
     document.getElementById("firstName").value = "";
     document.getElementById("lastName").value = "";
     document.getElementById("email").value = "";
     document.getElementById("password").value = "";
     document.getElementById("password2").value = "";
+    document.getElementById("popupOfficerWarning").value = "";
     popup.classList.remove("show");
 }
 
-// Popup Add Parking Lot Button Clicked
+// Popup Add Parking Lot Button Clicked Adds A New Parking Lot To The Database
 function createLot() {
-    //Close Popup
+    //Close popup
     let popup = document.getElementById("addLotPopup");
     popup.classList.remove("show");
 }
@@ -146,8 +143,58 @@ function closeLot() {
 }
 
 // Popup Add Offense Button Clicked
-function createOffense() {
-    //Close Popup
+async function createOffense() {
+    //Set input variables
+    let strOffenseType = String(document.getElementById("offenseType").value);
+    let strCurencyType = String(document.getElementById("currencyType").value);
+    let strFineAmount = String(document.getElementById("fineAmount").value);
+
+    //If values are empty error is sent
+    if (strOffenseType == ""){
+        let warningMessage = document.getElementById("popupOffenseWarning");
+        warningMessage.innerHTML = "No Offense Type Given";
+        return
+    }
+    if (strCurencyType == "--Please choose an option--"){
+        let warningMessage = document.getElementById("popupOffenseWarning");
+        warningMessage.innerHTML = "No Currency Type Provided";
+        return;
+    }
+    if (strFineAmount == ""){
+        let warningMessage = document.getElementById("popupOffenseWarning");
+        warningMessage.innerHTML = "No Fine Amount Provided";
+        return;
+    }
+
+    //Get rid of possible commas
+    strFineAmount = strFineAmount.replace(/\,/g, '');
+
+    //If user provided a currency symbol for fine amount check if matches remove for future testing
+    if(strFineAmount.charAt(0) == strCurencyType){
+        strFineAmount = strFineAmount.slice(1);
+    }
+
+    //Fine amount requirement check
+    const numCheckIfNumber = +strFineAmount;
+    if(Number.isNaN(numCheckIfNumber)){
+        let warningMessage = document.getElementById("popupOffenseWarning");
+        warningMessage.innerHTML = "Fine Amount Is Not A Number Value";
+        return;
+    }
+
+    //Add to firestore
+    await setDoc(doc(db, "Offenses", strOffenseType.replace(/\s/g, '')), {
+        OffenseType: strOffenseType,
+        FineAmount: strCurencyType + strFineAmount
+    });
+
+    //Reset table values
+    document.getElementById("offenseType").value = "";
+    document.getElementById("currencyType").value = "--Please choose an option--";
+    document.getElementById("fineAmount").value = "";
+    document.getElementById("popupOfficerWarning").value = "";
+
+    //Close popup
     let popup = document.getElementById("addOffensePopup");
     popup.classList.remove("show");
 }
@@ -156,13 +203,27 @@ function createOffense() {
 function closeOffense() {
     let popup = document.getElementById("addOffensePopup");
     //reset table values
-    
+    document.getElementById("offenseType").value = "";
+    document.getElementById("currencyType").value = "--Please choose an option--";
+    document.getElementById("fineAmount").value = "";
+    document.getElementById("popupOffenseWarning").value = "";
     popup.classList.remove("show");
 }
 
-//Button Clickers In DataTable
+//Button Clickers For Officer Add Button
 addOfficerButton.addEventListener('click', function(){
     addPopups("addOfficerPopup");
 }, false);
+//Create Officer Button
 popupOfficerUpdateButton.addEventListener('click', createOfficer)
+//Cancel Officer Button Creation
 popupOfficerCancel.addEventListener('click', closeOfficer)
+
+//Button Clickers For Offense Add Buttone
+addOffenseButton.addEventListener('click', function(){
+    addPopups("addOffensePopup");
+}, false);
+//Create Offense Button
+popupOffenseUpdateButton.addEventListener('click', createOffense)
+//Cancel Offense Button Creation
+popupOffenseCancel.addEventListener('click', closeOffense)

@@ -126,7 +126,7 @@ function AddAllItemsToTheOffensesTable(OffenseDocList){
   offNo=0;
   tOffensesbody.innerHTML="";
   OffenseDocList.forEach(element => {
-    AddItemToOffensesTable(element.OffenseType, element.Fine);
+    AddItemToOffensesTable(element.OffenseType, element.FineAmount);
     
   });
 
@@ -267,4 +267,10 @@ function AddAllItemsToTheTicketsTable(TicketsDocList){
 }
 
 //Once window loads it gets data from firestore
-window.onload = getAllDataOnce();  
+window.onload = getAllDataOnce();
+
+//Export arrays so they can be added to 
+export {arrVehicles};
+export {arrOfficers};
+export {arrLots};
+export {arrOffenses};

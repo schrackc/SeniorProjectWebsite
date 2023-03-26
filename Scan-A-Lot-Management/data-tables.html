@@ -141,19 +141,43 @@
       </table>
     </div>
 
-    <!--Officer Table-->
+    <!--Offense Table-->
     <div id="Offense" class="tabContent">        
       <h3>
         <p>Offense</p>
         <!--Add New Offense Button-->
-        <button class="tableTools">Add Offense</button>
+        <button class="tableTools" id="addOffenseButton">Add Offense</button>
       </h3>
-       <table>
+      <!--Popup Box When Adding New Offense-->
+      <div class="popup">
+        <div class="popuptext" id='addOffensePopup'>
+          <!--Fill Boxes for Offense Add Offense Fields-->
+          <h4>Offense Type:</h4>
+          <input type="text" id="offenseType" placeholder="Offense Type" class="popupInsertBox"/>
+          <h4>Currency</h4>
+          <select id="currencyType" class="popupInsertBox">
+            <option>--Please choose an option--</option>
+            <option>$</option>
+            <option>€</option>
+            <option>£</option>
+          </select>
+          <h4>Fine Amount:</h4>
+          <input type="text" id="fineAmount" placeholder="Fine Amount" class="popupInsertBox"/>
+          
+          <!--Popup Issue Warning-->
+          <div id="popupOffenseWarning"></div>
+
+          <!--Cancel Buttons and Add new Offense Button-->
+          <button class="popupCancelButton" id="popupOffenseCancel">Cancel</button>
+          <button class="popupUpdateButton" id="popupOffenseUpdateButton">Add Offense</button>
+        </div>
+      </div>
+      <table>
         <thead>
-        <th>Offense Type</th>
-        <th>Fine Amount</th>
-      </thead>
-      <tbody id="tbody5"></tbody>
+          <th>Offense Type</th>
+          <th>Fine Amount</th>
+        </thead>
+        <tbody id="tbody5"></tbody>
       </table>
     </div>
   </body>

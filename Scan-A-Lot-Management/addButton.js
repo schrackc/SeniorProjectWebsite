@@ -98,7 +98,7 @@ async function createOfficer() {
         FirstName: strFirstName,
         LastName: strLastName,
         Email: strEmail,
-        UserName: strLastName + strFirstName.charAt(0)
+        Username: strLastName + strFirstName.charAt(0)
     });
 
     //Clear values

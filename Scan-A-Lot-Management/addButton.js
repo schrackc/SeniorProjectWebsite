@@ -210,6 +210,15 @@ function closeOffense() {
     popup.classList.remove("show");
 }
 
+//Button Clickers For Vehicle Add Button
+addVehicleButton.addEventListener('click', function(){
+    addPopups("addVehiclePopup");
+}, false);
+//Create Vehicle Button
+popupVehicleUpdateButton.addEventListener('click', createVehicle)
+//Cancel Vehicle Button Creation
+popupVehicleCancel.addEventListener('click', closeVehicle)
+
 //Button Clickers For Officer Add Button
 addOfficerButton.addEventListener('click', function(){
     addPopups("addOfficerPopup");

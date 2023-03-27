@@ -56,14 +56,14 @@ async function createOfficer() {
     }
     
     //Test if password has it is a capital, lower case or numeric value
-    let capLetter = true;
-    let lowerLetter = true;
-    let numeric = true;
-    if (Boolean(strPassword.match(/[A-Z]/))) capLetter = false;
-    if (Boolean(strPassword.match(/[a-z]/))) lowerLetter = false;
-    if (Boolean(strPassword.match(/[0-9]/))) numeric = false
+    let isCapLetter = true;
+    let isLowerLetter = true;
+    let isNumeric = true;
+    if (Boolean(strPassword.match(/[A-Z]/))) isCapLetter = false;
+    if (Boolean(strPassword.match(/[a-z]/))) isLowerLetter = false;
+    if (Boolean(strPassword.match(/[0-9]/))) isNumeric = false
 
-    if (capLetter || lowerLetter || numeric){
+    if (isCapLetter || isLowerLetter || isNumeric){
         //Alert user of password not meeting requirements
         let warningMessage = document.getElementById("popupOfficerWarning");
         warningMessage.innerHTML = "Password Does Not Meet Requirements: Provide at least one capital letter, one lower case letter and one number";

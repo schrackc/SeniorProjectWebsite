@@ -127,7 +127,6 @@ function AddAllItemsToTheOffensesTable(OffenseDocList){
   tOffensesbody.innerHTML="";
   OffenseDocList.forEach(element => {
     AddItemToOffensesTable(element.OffenseType, element.FineAmount);
-    
   });
 
 }  
@@ -210,8 +209,7 @@ function AddAllItemsToTheVehiclesTable(VehiclesDocList){
   offNo=0;
   tVehiclesbody.innerHTML="";
   VehiclesDocList.forEach(element => {
-    AddItemToVehiclesTable(element.Color, element.IDNum, element.LicenseNum, element.LicenseState, element.Make, element.Model, element.OwnerFirstName, element.OwnerLastName, element.ParkingLot);
-    
+    AddItemToVehiclesTable(element.Color, element.IDNum, element.LicenseNum, element.LicenseState, element.Make, element.Model, element.OwnerFirstName, element.OwnerLastName, element.ParkingLot);    
   });
 }
   

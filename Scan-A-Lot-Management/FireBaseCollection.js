@@ -75,21 +75,20 @@
         var td2 = document.createElement('td');
         var td3 = document.createElement('td');
         var td4 = document.createElement('td');
-        var mod = document.createElement('style');
-
-        //td1.innerHTML = ++offNo;
+        strMod.classList.add('dropbtn');
+       //td1.innerHTML = ++offNo;
         
         td1.innerHTML = LastName;
         td2.innerHTML = FirstName;
         td3.innerHTML = Username;
         td4.innerHTML = Email;
-        mod.enterHTML = "Modify";
+        strMod.enterHTML = "Modify";
 
         trow.appendChild(td1);
         trow.appendChild(td2);
         trow.appendChild(td3);
         trow.appendChild(td4);
-        trow.appendChild(mod);
+        trow.appendChild(strMod);
 
         tOfficerbody.appendChild(trow);
       }

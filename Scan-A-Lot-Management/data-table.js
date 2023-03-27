@@ -58,6 +58,3 @@ dropdown.forEach(dropdown => {
     });
   });
 });
-
-
-

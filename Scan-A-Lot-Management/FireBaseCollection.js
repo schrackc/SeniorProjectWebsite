@@ -96,14 +96,17 @@ function AddItemToOfficerTable(strLastName, strFirstName, strUsername, strEmail)
 
   tOfficerbody.appendChild(trow);
 }
+//Creating the tables for Officer
 function AddAllItemsToTheOfficerTable(OfficerDocList){
   offNo=0;
   tOfficerbody.innerHTML="";
+  //Asking for data to be put into the table
   OfficerDocList.forEach(element => {
     AddItemToOfficerTable(element.LastName, element.FirstName, element.Username, element.Email);
     
   });
 }
+
 //Adding Offenses Data to table
 function AddItemToOffensesTable(strOffenseType, strFine){
   var trow = document.createElement('tr');
@@ -121,10 +124,11 @@ function AddItemToOffensesTable(strOffenseType, strFine){
   tOffensesbody.appendChild(trow);
   
 }
-  
+  //Creating the tables for Offenses
 function AddAllItemsToTheOffensesTable(OffenseDocList){
   
   tOffensesbody.innerHTML="";
+  //Asking for data to be put into the table
   OffenseDocList.forEach(element => {
     AddItemToOffensesTable(element.OffenseType, element.FineAmount);
   });
@@ -156,15 +160,16 @@ function AddItemToParkingLotsTable(strLotName, longMaxLatitude, longMaxLongitude
   tParkingLotsbody.appendChild(trow);
   
 }
-  
+  //Creating the tables for ParkingLots
 function AddAllItemsToTheParkingLotsTable(ParkingLotsDocList){
-  
+  //Asking for data to be put into the table
   tParkingLotsbody.innerHTML="";
   ParkingLotsDocList.forEach(element => {
     AddItemToParkingLotsTable(element.LotName, element.MaxLatitude, element.MaxLongitude, element.MinLatitude, element.MinLongitude);
     
   });
 }
+
 //Adding Vehicle Data to table
 function AddItemToVehiclesTable(strColor, strIDNum, strLicenseNum, strLicenseState, strMake, strModel, strOwnerFirstName, strOwnerLastName, strParkingLot){
   var trow = document.createElement('tr');
@@ -177,6 +182,7 @@ function AddItemToVehiclesTable(strColor, strIDNum, strLicenseNum, strLicenseSta
   var td7 = document.createElement('td');
   var td8 = document.createElement('td');
   var td9 = document.createElement('td');
+  
 
   
   
@@ -204,9 +210,10 @@ function AddItemToVehiclesTable(strColor, strIDNum, strLicenseNum, strLicenseSta
   tVehiclesbody.appendChild(trow);
   
 }
-  
+  //Creating the tables for Vehicles
 function AddAllItemsToTheVehiclesTable(VehiclesDocList){
   offNo=0;
+  //Asking for data to be put into the table
   tVehiclesbody.innerHTML="";
   VehiclesDocList.forEach(element => {
     AddItemToVehiclesTable(element.Color, element.IDNum, element.LicenseNum, element.LicenseState, element.Make, element.Model, element.OwnerFirstName, element.OwnerLastName, element.ParkingLot);    
@@ -230,7 +237,6 @@ function AddItemToTicketsTable(strCarMake, strCarModel, strFineAmount, strLicens
   
   td1.innerHTML = iTicketNum;
   td2.innerHTML = strLicenseNum;
-  //State needs added as a firestore collection 
   td3.innerHTML = strLicenseState;
   td4.innerHTML = strOffense;
   td5.innerHTML = strTime;
@@ -257,9 +263,10 @@ function AddItemToTicketsTable(strCarMake, strCarModel, strFineAmount, strLicens
   tTicketsbody.appendChild(trow);
   
 }
-
+//Creating the tables for Tickets
 function AddAllItemsToTheTicketsTable(TicketsDocList){
   offNo=0;
+  //Asking for data to be put into the table
   tTicketsbody.innerHTML="";
   TicketsDocList.forEach(element => {
     AddItemToTicketsTable(element.CarMake, element.CarModel, element.FineAmount, element.LicenseNum, element.Offense, element.Officer, element.ParkingLot, element.TicketNum, element.Time, element.LicenseState);

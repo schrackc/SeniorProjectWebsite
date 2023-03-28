@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
 import { getFirestore, collection, getDocs, doc, setDoc} from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js';
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
-import { arrVehicles, arrOfficers, arrLots, arrOffenses } from "./FireBaseCollection.js"; 
+import { arrOfficers, arrLots } from "./FireBaseCollection.js"; 
 
 const firebaseConfig = {
     apiKey: "AIzaSyDIEtCfoSgt-Ka56fFwouFDvEXId0Xrk78",
@@ -213,7 +213,19 @@ function closeOffense() {
 //Button Clickers For Vehicle Add Button
 addVehicleButton.addEventListener('click', function(){
     addPopups("addVehiclePopup");
-}, false);
+    //Add Authorized Lots in the parking lot dropdown
+    const allowLotsDropDown = document.getElementById("allowLots")
+    //Loop Parking Lots as option in drop down
+    for (let iDropDownIndex = 0; iDropDownIndex < arrLots.length; iDropDownIndex++){
+        let option = document.createElement("option");
+        option.setAttribute("value", arrLots.at(iDropDownIndex).LotName);
+
+        let optionText = document.createTextNode(arrLots.at(iDropDownIndex).LotName);
+        option.appendChild(optionText);
+
+        allowLotsDropDown.appendChild(option);
+    }
+});
 //Create Vehicle Button
 popupVehicleUpdateButton.addEventListener('click', createVehicle)
 //Cancel Vehicle Button Creation
@@ -222,7 +234,7 @@ popupVehicleCancel.addEventListener('click', closeVehicle)
 //Button Clickers For Officer Add Button
 addOfficerButton.addEventListener('click', function(){
     addPopups("addOfficerPopup");
-}, false);
+});
 //Create Officer Button
 popupOfficerUpdateButton.addEventListener('click', createOfficer)
 //Cancel Officer Button Creation
@@ -231,8 +243,24 @@ popupOfficerCancel.addEventListener('click', closeOfficer)
 //Button Clickers For Offense Add Buttone
 addOffenseButton.addEventListener('click', function(){
     addPopups("addOffensePopup");
-}, false);
+});
 //Create Offense Button
 popupOffenseUpdateButton.addEventListener('click', createOffense)
 //Cancel Offense Button Creation
 popupOffenseCancel.addEventListener('click', closeOffense)
+
+//Allows mutliple select without holding down ctrl
+const multiSelectWithoutCtrl = ( elemSelector ) => {
+    let options = [].slice.call(document.querySelectorAll(`${elemSelector} option`));
+    options.forEach(function (element) {
+        element.addEventListener("mousedown", 
+            function (e) {
+                e.preventDefault();
+                element.parentElement.focus();
+                this.selected = !this.selected;
+                return false;
+            }, false );
+    });
+  }
+  
+  multiSelectWithoutCtrl('#allowLots')

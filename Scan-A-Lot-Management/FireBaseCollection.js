@@ -75,7 +75,7 @@ var tOfficerbody = document.getElementById("tOfficersBody");
 var tParkingLotsbody = document.getElementById("tParkingLotsBody");
 var tOffensesbody = document.getElementById("tOffensesBody");
 
-function AddItemToOfficerTable(LastName, FirstName, Username, Email){
+function AddItemToOfficerTable(strLastName, strFirstName, strUsername, strEmail){
   var trow = document.createElement('tr');
   var td1 = document.createElement('td');
   var td2 = document.createElement('td');
@@ -84,10 +84,10 @@ function AddItemToOfficerTable(LastName, FirstName, Username, Email){
 
   //td1.innerHTML = ++offNo;
   
-  td1.innerHTML = LastName;
-  td2.innerHTML = FirstName;
-  td3.innerHTML = Username;
-  td4.innerHTML = Email;
+  td1.innerHTML = strLastName;
+  td2.innerHTML = strFirstName;
+  td3.innerHTML = strUsername;
+  td4.innerHTML = strEmail;
 
   trow.appendChild(td1);
   trow.appendChild(td2);
@@ -131,7 +131,7 @@ function AddAllItemsToTheOffensesTable(OffenseDocList){
 
 }  
 //Adding Parking Lot Data to table
-function AddItemToParkingLotsTable(LotName, MaxLatitude, MaxLongitude, MinLatitude, MinLongitude){
+function AddItemToParkingLotsTable(strLotName, longMaxLatitude, longMaxLongitude, longMinLatitude, longMinLongitude){
   var trow = document.createElement('tr');
   var td1 = document.createElement('td');
   var td2 = document.createElement('td');
@@ -141,11 +141,11 @@ function AddItemToParkingLotsTable(LotName, MaxLatitude, MaxLongitude, MinLatitu
 
   
   
-  td1.innerHTML = LotName;
-  td2.innerHTML = MaxLatitude;
-  td3.innerHTML = MaxLongitude;
-  td4.innerHTML = MinLatitude;
-  td5.innerHTML = MinLongitude;
+  td1.innerHTML = strLotName;
+  td2.innerHTML = longMaxLatitude;
+  td3.innerHTML = longMaxLongitude;
+  td4.innerHTML = longMinLatitude;
+  td5.innerHTML = longMinLongitude;
 
   trow.appendChild(td1);
   trow.appendChild(td2);
@@ -166,7 +166,7 @@ function AddAllItemsToTheParkingLotsTable(ParkingLotsDocList){
   });
 }
 //Adding Vehicle Data to table
-function AddItemToVehiclesTable(Color, IDNum, LicenseNum, LicenseState, Make, Model, OwnerFirstName, OwnerLastName, ParkingLot){
+function AddItemToVehiclesTable(strColor, strIDNum, strLicenseNum, strLicenseState, strMake, strModel, strOwnerFirstName, strOwnerLastName, strParkingLot){
   var trow = document.createElement('tr');
   var td1 = document.createElement('td');
   var td2 = document.createElement('td');
@@ -180,15 +180,15 @@ function AddItemToVehiclesTable(Color, IDNum, LicenseNum, LicenseState, Make, Mo
 
   
   
-  td1.innerHTML = LicenseNum;
-  td2.innerHTML = LicenseState;
-  td3.innerHTML = OwnerFirstName;
-  td4.innerHTML = OwnerLastName;
-  td5.innerHTML = Make;
-  td6.innerHTML = Model;
-  td7.innerHTML = Color;
-  td8.innerHTML = IDNum;
-  td9.innerHTML = ParkingLot;
+  td1.innerHTML = strLicenseNum;
+  td2.innerHTML = strLicenseState;
+  td3.innerHTML = strOwnerFirstName;
+  td4.innerHTML = strOwnerLastName;
+  td5.innerHTML = strMake;
+  td6.innerHTML = strModel;
+  td7.innerHTML = strColor;
+  td8.innerHTML = strIDNum;
+  td9.innerHTML = strParkingLot;
 
 
   trow.appendChild(td1);
@@ -213,7 +213,7 @@ function AddAllItemsToTheVehiclesTable(VehiclesDocList){
   });
 }
   //Adding Ticket Data to table
-function AddItemToTicketsTable(CarMake, CarModel, FineAmount, LicenseNum, Offense, Officer, ParkingLot, TicketNum, Time, LicenseState){
+function AddItemToTicketsTable(strCarMake, strCarModel, strFineAmount, strLicenseNum, strOffense, strOfficer, strParkingLot, iTicketNum, strTime, strLicenseState){
   var trow = document.createElement('tr');
   var td1 = document.createElement('td');
   var td2 = document.createElement('td');
@@ -228,17 +228,17 @@ function AddItemToTicketsTable(CarMake, CarModel, FineAmount, LicenseNum, Offens
 
   
   
-  td1.innerHTML = TicketNum;
-  td2.innerHTML = LicenseNum;
+  td1.innerHTML = iTicketNum;
+  td2.innerHTML = strLicenseNum;
   //State needs added as a firestore collection 
-  td3.innerHTML = LicenseState;
-  td4.innerHTML = Offense;
-  td5.innerHTML = Time;
-  td6.innerHTML = ParkingLot;
-  td7.innerHTML = FineAmount;
-  td8.innerHTML = Officer;
-  td9.innerHTML = CarMake;
-  td10.innerHTML = CarModel;
+  td3.innerHTML = strLicenseState;
+  td4.innerHTML = strOffense;
+  td5.innerHTML = strTime;
+  td6.innerHTML = strParkingLot;
+  td7.innerHTML = strFineAmount;
+  td8.innerHTML = strOfficer;
+  td9.innerHTML = strCarMake;
+  td10.innerHTML = strCarModel;
   
   
 

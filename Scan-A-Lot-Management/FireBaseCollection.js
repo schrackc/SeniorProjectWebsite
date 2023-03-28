@@ -213,7 +213,7 @@ function AddAllItemsToTheVehiclesTable(VehiclesDocList){
   });
 }
   //Adding Ticket Data to table
-function AddItemToTicketsTable(CarMake, CarModel, FineAmount, LicenseNum, Offense, Officer, ParkingLot, TicketNum, Time){
+function AddItemToTicketsTable(CarMake, CarModel, FineAmount, LicenseNum, Offense, Officer, ParkingLot, TicketNum, Time, LicenseState){
   var trow = document.createElement('tr');
   var td1 = document.createElement('td');
   var td2 = document.createElement('td');
@@ -224,20 +224,22 @@ function AddItemToTicketsTable(CarMake, CarModel, FineAmount, LicenseNum, Offens
   var td7 = document.createElement('td');
   var td8 = document.createElement('td');
   var td9 = document.createElement('td');
-  
+  var td10 = document.createElement('td');
 
   
   
   td1.innerHTML = TicketNum;
   td2.innerHTML = LicenseNum;
   //State needs added as a firestore collection 
-  td3.innerHTML = Offense;
-  td4.innerHTML = Time;
-  td5.innerHTML = ParkingLot;
-  td6.innerHTML = FineAmount;
-  td7.innerHTML = Officer;
-  td8.innerHTML = CarMake;
-  td9.innerHTML = CarModel;
+  td3.innerHTML = LicenseState;
+  td4.innerHTML = Offense;
+  td5.innerHTML = Time;
+  td6.innerHTML = ParkingLot;
+  td7.innerHTML = FineAmount;
+  td8.innerHTML = Officer;
+  td9.innerHTML = CarMake;
+  td10.innerHTML = CarModel;
+  
   
 
   trow.appendChild(td1);
@@ -249,6 +251,7 @@ function AddItemToTicketsTable(CarMake, CarModel, FineAmount, LicenseNum, Offens
   trow.appendChild(td7);
   trow.appendChild(td8);
   trow.appendChild(td9);
+  trow.appendChild(td10);
   
 
   tTicketsbody.appendChild(trow);
@@ -259,7 +262,7 @@ function AddAllItemsToTheTicketsTable(TicketsDocList){
   offNo=0;
   tTicketsbody.innerHTML="";
   TicketsDocList.forEach(element => {
-    AddItemToTicketsTable(element.CarMake, element.CarModel, element.FineAmount, element.LicenseNum, element.Offense, element.Officer, element.ParkingLot, element.TicketNum, element.Time);
+    AddItemToTicketsTable(element.CarMake, element.CarModel, element.FineAmount, element.LicenseNum, element.Offense, element.Officer, element.ParkingLot, element.TicketNum, element.Time, element.LicenseState);
     
   });
 

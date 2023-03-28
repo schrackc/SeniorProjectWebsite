@@ -75,6 +75,7 @@ var tOfficerbody = document.getElementById("tOfficersBody");
 var tParkingLotsbody = document.getElementById("tParkingLotsBody");
 var tOffensesbody = document.getElementById("tOffensesBody");
 
+//Adding Officer Data to table
 function AddItemToOfficerTable(strLastName, strFirstName, strUsername, strEmail){
   var trow = document.createElement('tr');
   var td1 = document.createElement('td');
@@ -82,7 +83,6 @@ function AddItemToOfficerTable(strLastName, strFirstName, strUsername, strEmail)
   var td3 = document.createElement('td');
   var td4 = document.createElement('td');
 
-  //td1.innerHTML = ++offNo;
   
   td1.innerHTML = strLastName;
   td2.innerHTML = strFirstName;
@@ -104,16 +104,16 @@ function AddAllItemsToTheOfficerTable(OfficerDocList){
     
   });
 }
-
-function AddItemToOffensesTable(OffenseType, Fine){
+//Adding Offenses Data to table
+function AddItemToOffensesTable(strOffenseType, strFine){
   var trow = document.createElement('tr');
   var td1 = document.createElement('td');
   var td2 = document.createElement('td');
 
  
   
-  td1.innerHTML = OffenseType;
-  td2.innerHTML = Fine;
+  td1.innerHTML = strOffenseType;
+  td2.innerHTML = strFine;
 
   trow.appendChild(td1);
   trow.appendChild(td2);

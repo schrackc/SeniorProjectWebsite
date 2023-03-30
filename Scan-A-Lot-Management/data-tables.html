@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <script type="module" src="firebaseLoginFunctions.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 <!--Firestore script-->
 <script type="module" src="FireBaseCollection.js"></script>
 <script type="module" src="addButton.js"></script>
+
 
 <html lang="en" style="visibility: hidden;" id="webpage" >
   <head>
@@ -38,19 +42,20 @@
       <h3>
         <p>Tickets</p>
       </h3>
-      <table>
+      <table class="table table-striped">
           <thead>
+            <th>Ticket ID</th> 
+            <th>Plate Number</th> 
+            <th>State</th>
+            <th>Offense </th> 
+            <th>Time</th> 
+            <th>ParkingLot</th>
+            <th>FineAmount</th>
+            <th>Officer</th>
             <th>CarMake</th> 
             <th>CarModel</th>   
-            <th>FineAmount</th> 
-            <th>TicketNum</th> 
-            <th>Offense </th>   
-            <th>Officer</th> 
-            <th>ParkingLot</th> 
-            <th>TicketNum</th>   
-            <th>Time</th> 
           </thead>
-          <tbody id="tbody1"></tbody>
+          <tbody id="tTicketBody"></tbody>
       </table>
     </div>
     
@@ -142,21 +147,20 @@
           <button class="popupCancelButton" id="popupVehicleCancel">Cancel</button>
           <button class="popupUpdateButton" id="popupVehicleUpdateButton">Add Vehicle</button>
         </div>
-      </div>
-      <table>
+      </div> 
+      <table class="table table-striped">
         <thead>
-          <th>Color</th>
-          <th>ID Number</th>
           <th>License Number</th>
           <th>State</th>
-          <th>Make </th>
-          <th>Model</th>
           <th>First Name</th>
           <th>Last Name</th>
+          <th>Make </th>
+          <th>Model</th>
+          <th>Color</th>
+          <th>ID Number</th>
           <th>Parking Lot</th>
-    
         </thead>
-        <tbody id="tbody2"></tbody>
+        <tbody id="tVehiclesBody"></tbody>
       </table>
     </div>
     
@@ -192,14 +196,15 @@
         </div>
       </div>
       <!--Officer Data Table-->
-      <table  class="table table-dark">
+      <table class="table table-striped">
         <thead>
           <th>Last Name</th> 
           <th>First Name</th> 
           <th>Username</th>   
-          <th>Email</th> 
+          <th>Email</th>
+          <th>Modify</th>
         </thead>
-        <tbody id="tbody3"></tbody>
+        <tbody id="tOfficersBody"></tbody>
       </table> 
     </div>
 
@@ -210,7 +215,7 @@
         <!--New Parking Lot Button-->
         <button class="tableTools">Add Parking Lot</button>
       </h3>
-      <table>
+      <table class="table table-striped">
           <thead>
             <th>Lot Name</th>
             <th>Max Latitude</th>
@@ -218,7 +223,7 @@
             <th>Min Latitude</th>
             <th>Min Longitude</th>
           </thead>
-          <tbody id="tbody4"></tbody>
+          <tbody id="tParkingLotsBody"></tbody>
       </table>
     </div>
 
@@ -253,12 +258,13 @@
           <button class="popupUpdateButton" id="popupOffenseUpdateButton">Add Offense</button>
         </div>
       </div>
-      <table>
+      <table class="table table-striped">
         <thead>
           <th>Offense Type</th>
           <th>Fine Amount</th>
+          <th>Modify</th>
         </thead>
-        <tbody id="tbody5"></tbody>
+        <tbody id="tOffensesBody"></tbody>
       </table>
     </div>
   </body>

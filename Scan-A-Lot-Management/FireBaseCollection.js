@@ -69,25 +69,25 @@ function getAllDataOnce(){
 
 //filling the table
 var offNo = 0;
-var tTicketsbody = document.getElementById("tbody1");
-var tVehiclesbody = document.getElementById("tbody2");
-var tOfficerbody = document.getElementById("tbody3");
-var tParkingLotsbody = document.getElementById("tbody4");
-var tOffensesbody = document.getElementById("tbody5");
+var tTicketsbody = document.getElementById("tTicketBody");
+var tVehiclesbody = document.getElementById("tVehiclesBody");
+var tOfficerbody = document.getElementById("tOfficersBody");
+var tParkingLotsbody = document.getElementById("tParkingLotsBody");
+var tOffensesbody = document.getElementById("tOffensesBody");
 
-function AddItemToOfficerTable(LastName, FirstName, Username, Email){
+//Adding Officer Data to table
+function AddItemToOfficerTable(strLastName, strFirstName, strUsername, strEmail){
   var trow = document.createElement('tr');
   var td1 = document.createElement('td');
   var td2 = document.createElement('td');
   var td3 = document.createElement('td');
   var td4 = document.createElement('td');
 
-  //td1.innerHTML = ++offNo;
   
-  td1.innerHTML = LastName;
-  td2.innerHTML = FirstName;
-  td3.innerHTML = Username;
-  td4.innerHTML = Email;
+  td1.innerHTML = strLastName;
+  td2.innerHTML = strFirstName;
+  td3.innerHTML = strUsername;
+  td4.innerHTML = strEmail;
 
   trow.appendChild(td1);
   trow.appendChild(td2);
@@ -96,24 +96,27 @@ function AddItemToOfficerTable(LastName, FirstName, Username, Email){
 
   tOfficerbody.appendChild(trow);
 }
+//Creating the tables for Officer
 function AddAllItemsToTheOfficerTable(OfficerDocList){
   offNo=0;
   tOfficerbody.innerHTML="";
+  //Asking for data to be put into the table
   OfficerDocList.forEach(element => {
     AddItemToOfficerTable(element.LastName, element.FirstName, element.Username, element.Email);
     
   });
 }
 
-function AddItemToOffensesTable(OffenseType, Fine){
+//Adding Offenses Data to table
+function AddItemToOffensesTable(strOffenseType, strFine){
   var trow = document.createElement('tr');
   var td1 = document.createElement('td');
   var td2 = document.createElement('td');
 
-  //td1.innerHTML = ++offNo;
+ 
   
-  td1.innerHTML = OffenseType;
-  td2.innerHTML = Fine;
+  td1.innerHTML = strOffenseType;
+  td2.innerHTML = strFine;
 
   trow.appendChild(td1);
   trow.appendChild(td2);
@@ -121,18 +124,18 @@ function AddItemToOffensesTable(OffenseType, Fine){
   tOffensesbody.appendChild(trow);
   
 }
-  
+  //Creating the tables for Offenses
 function AddAllItemsToTheOffensesTable(OffenseDocList){
-  offNo=0;
+  
   tOffensesbody.innerHTML="";
+  //Asking for data to be put into the table
   OffenseDocList.forEach(element => {
     AddItemToOffensesTable(element.OffenseType, element.FineAmount);
-    
   });
 
 }  
-
-function AddItemToParkingLotsTable(LotName, MaxLatitude, MaxLongitude, MinLatitude, MinLongitude){
+//Adding Parking Lot Data to table
+function AddItemToParkingLotsTable(strLotName, longMaxLatitude, longMaxLongitude, longMinLatitude, longMinLongitude){
   var trow = document.createElement('tr');
   var td1 = document.createElement('td');
   var td2 = document.createElement('td');
@@ -140,13 +143,13 @@ function AddItemToParkingLotsTable(LotName, MaxLatitude, MaxLongitude, MinLatitu
   var td4 = document.createElement('td');
   var td5 = document.createElement('td');
 
-  //td1.innerHTML = ++offNo;
   
-  td1.innerHTML = LotName;
-  td2.innerHTML = MaxLatitude;
-  td3.innerHTML = MaxLongitude;
-  td4.innerHTML = MinLatitude;
-  td5.innerHTML = MinLongitude;
+  
+  td1.innerHTML = strLotName;
+  td2.innerHTML = longMaxLatitude;
+  td3.innerHTML = longMaxLongitude;
+  td4.innerHTML = longMinLatitude;
+  td5.innerHTML = longMinLongitude;
 
   trow.appendChild(td1);
   trow.appendChild(td2);
@@ -157,9 +160,9 @@ function AddItemToParkingLotsTable(LotName, MaxLatitude, MaxLongitude, MinLatitu
   tParkingLotsbody.appendChild(trow);
   
 }
-  
+  //Creating the tables for ParkingLots
 function AddAllItemsToTheParkingLotsTable(ParkingLotsDocList){
-  offNo=0;
+  //Asking for data to be put into the table
   tParkingLotsbody.innerHTML="";
   ParkingLotsDocList.forEach(element => {
     AddItemToParkingLotsTable(element.LotName, element.MaxLatitude, element.MaxLongitude, element.MinLatitude, element.MinLongitude);
@@ -167,7 +170,8 @@ function AddAllItemsToTheParkingLotsTable(ParkingLotsDocList){
   });
 }
 
-function AddItemToVehiclesTable(Color, IDNum, LicenseNum, LicenseState, Make, Model, OwnerFirstName, OwnerLastName, ParkingLot){
+//Adding Vehicle Data to table
+function AddItemToVehiclesTable(strColor, strIDNum, strLicenseNum, strLicenseState, strMake, strModel, strOwnerFirstName, strOwnerLastName, strParkingLot){
   var trow = document.createElement('tr');
   var td1 = document.createElement('td');
   var td2 = document.createElement('td');
@@ -178,18 +182,19 @@ function AddItemToVehiclesTable(Color, IDNum, LicenseNum, LicenseState, Make, Mo
   var td7 = document.createElement('td');
   var td8 = document.createElement('td');
   var td9 = document.createElement('td');
-
-  //td1.innerHTML = ++offNo;
   
-  td1.innerHTML = Color;
-  td2.innerHTML = IDNum;
-  td3.innerHTML = LicenseNum;
-  td4.innerHTML = LicenseState;
-  td5.innerHTML = Make;
-  td6.innerHTML = Model;
-  td7.innerHTML = OwnerFirstName;
-  td8.innerHTML = OwnerLastName;
-  td9.innerHTML = ParkingLot;
+
+  
+  
+  td1.innerHTML = strLicenseNum;
+  td2.innerHTML = strLicenseState;
+  td3.innerHTML = strOwnerFirstName;
+  td4.innerHTML = strOwnerLastName;
+  td5.innerHTML = strMake;
+  td6.innerHTML = strModel;
+  td7.innerHTML = strColor;
+  td8.innerHTML = strIDNum;
+  td9.innerHTML = strParkingLot;
 
 
   trow.appendChild(td1);
@@ -205,17 +210,17 @@ function AddItemToVehiclesTable(Color, IDNum, LicenseNum, LicenseState, Make, Mo
   tVehiclesbody.appendChild(trow);
   
 }
-  
+  //Creating the tables for Vehicles
 function AddAllItemsToTheVehiclesTable(VehiclesDocList){
   offNo=0;
+  //Asking for data to be put into the table
   tVehiclesbody.innerHTML="";
   VehiclesDocList.forEach(element => {
-    AddItemToVehiclesTable(element.Color, element.IDNum, element.LicenseNum, element.LicenseState, element.Make, element.Model, element.OwnerFirstName, element.OwnerLastName, element.ParkingLot);
-    
+    AddItemToVehiclesTable(element.Color, element.IDNum, element.LicenseNum, element.LicenseState, element.Make, element.Model, element.OwnerFirstName, element.OwnerLastName, element.ParkingLot);    
   });
 }
-  
-function AddItemToTicketsTable(CarMake, CarModel, FineAmount, LicenseNum, Offense, Officer, ParkingLot, TicketNum, Time){
+  //Adding Ticket Data to table
+function AddItemToTicketsTable(strCarMake, strCarModel, strFineAmount, strLicenseNum, strOffense, strOfficer, strParkingLot, iTicketNum, strTime, strLicenseState){
   var trow = document.createElement('tr');
   var td1 = document.createElement('td');
   var td2 = document.createElement('td');
@@ -226,19 +231,21 @@ function AddItemToTicketsTable(CarMake, CarModel, FineAmount, LicenseNum, Offens
   var td7 = document.createElement('td');
   var td8 = document.createElement('td');
   var td9 = document.createElement('td');
-  
+  var td10 = document.createElement('td');
 
-  //td1.innerHTML = ++offNo;
   
-  td1.innerHTML = CarMake;
-  td2.innerHTML = CarModel;
-  td3.innerHTML = FineAmount;
-  td4.innerHTML = LicenseNum;
-  td5.innerHTML = Offense;
-  td6.innerHTML = Officer;
-  td7.innerHTML = ParkingLot;
-  td8.innerHTML = TicketNum;
-  td9.innerHTML = Time;
+  
+  td1.innerHTML = iTicketNum;
+  td2.innerHTML = strLicenseNum;
+  td3.innerHTML = strLicenseState;
+  td4.innerHTML = strOffense;
+  td5.innerHTML = strTime;
+  td6.innerHTML = strParkingLot;
+  td7.innerHTML = strFineAmount;
+  td8.innerHTML = strOfficer;
+  td9.innerHTML = strCarMake;
+  td10.innerHTML = strCarModel;
+  
   
 
   trow.appendChild(td1);
@@ -250,17 +257,19 @@ function AddItemToTicketsTable(CarMake, CarModel, FineAmount, LicenseNum, Offens
   trow.appendChild(td7);
   trow.appendChild(td8);
   trow.appendChild(td9);
+  trow.appendChild(td10);
   
 
   tTicketsbody.appendChild(trow);
   
 }
-
+//Creating the tables for Tickets
 function AddAllItemsToTheTicketsTable(TicketsDocList){
   offNo=0;
+  //Asking for data to be put into the table
   tTicketsbody.innerHTML="";
   TicketsDocList.forEach(element => {
-    AddItemToTicketsTable(element.CarMake, element.CarModel, element.FineAmount, element.LicenseNum, element.Offense, element.Officer, element.ParkingLot, element.TicketNum, element.Time);
+    AddItemToTicketsTable(element.CarMake, element.CarModel, element.FineAmount, element.LicenseNum, element.Offense, element.Officer, element.ParkingLot, element.TicketNum, element.Time, element.LicenseState);
     
   });
 

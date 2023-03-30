@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
 import { getFirestore, collection, getDocs, doc, setDoc} from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js';
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
-import { arrOfficers, arrLots } from "./FireBaseCollection.js"; 
+import { arrOfficers, arrLots, arrVehicles } from "./FireBaseCollection.js"; 
 
 const firebaseConfig = {
     apiKey: "AIzaSyDIEtCfoSgt-Ka56fFwouFDvEXId0Xrk78",
@@ -82,6 +82,29 @@ async function createVehicle() {
         document.getElementById("popupVehicleWarning").innerHTML = "Provide A Car Color Value";
         return;
     }
+
+    //Create new Vehicle to fireStore
+    //Determine Document ID
+    var strDocName;
+    if (arrVehicles[arrVehicles.length - 1].IDNum + 1 < 10){
+        strDocName = "Veh00" + String(arrVehicles[arrVehicles.length - 1].IDNum + 1);
+    }else if(arrVehicles[arrVehicles.length - 1].IDNum + 1 < 100){
+        strDocName = "Veh0" + String(arrVehicles[arrVehicles.length - 1].IDNum + 1);
+    }else{
+        strDocName = "Veh" + String(arrVehicles[arrVehicles.length - 1].IDNum + 1);
+    }
+     //Create new Document to Vehicles Collection
+     await setDoc(doc(db, "Vehicles", strDocName), {
+        IDNum: arrVehicles[arrVehicles.length - 1].IDNum + 1,
+        OwnerFirstName: strVehicleFirstName,
+        OwnerLastName: strVehicleLastName,
+        LicenseNum: strLicenseNum,
+        LicenseState: strLicenseState,
+        Make: strVehicleMake,
+        Model: strVehicleModel,
+        Color: strVehicleColor,
+        ParkingLot: arrAuthLots
+    });
 
     //close popup
     document.getElementById("vehicleFirstName").value = "";
@@ -323,19 +346,3 @@ addOffenseButton.addEventListener('click', function(){
 popupOffenseUpdateButton.addEventListener('click', createOffense)
 //Cancel Offense Button Creation
 popupOffenseCancel.addEventListener('click', closeOffense)
-
-//Allows mutliple select without holding down ctrl
-const multiSelectWithoutCtrl = ( elemSelector ) => {
-    let options = [].slice.call(document.querySelectorAll(`${elemSelector} option`));
-    options.forEach(function (element) {
-        element.addEventListener("mousedown", 
-            function (e) {
-                e.preventDefault();
-                element.parentElement.focus();
-                this.selected = !this.selected;
-                return false;
-            }, false );
-    });
-  }
-
- 

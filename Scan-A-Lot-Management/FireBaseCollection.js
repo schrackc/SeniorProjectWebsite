@@ -273,3 +273,4 @@ window.onload = getAllDataOnce();
 export {arrOfficers};
 export {arrLots};
 export {arrOffenses};
+export {arrVehicles}

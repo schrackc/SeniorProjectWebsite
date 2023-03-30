@@ -1,5 +1,10 @@
+/*Defult Html allow scroll*/
+html{overflow-y: scroll;}
+
 /* Default Style of All Text */
-body {font-family: Arial;}
+body {
+  font-family: Arial;
+}
 
 /* Heading for Popups*/
 h4{
@@ -277,6 +282,7 @@ button {
 /* The actual popup (appears middle screen) */
 .popup .popuptext {
   visibility: hidden;
+  overflow:scroll;
   width: 500px;
   max-width: 80%;
   max-height: 70%;
@@ -316,7 +322,7 @@ button {
   margin-right: 0px;
 }
 
-#popupOfficerWarning{
+.popupWarning{
   text-align: center;
   color: red;
 }

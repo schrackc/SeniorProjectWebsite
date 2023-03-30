@@ -17,15 +17,82 @@ const auth = getAuth();
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// When The User Clicks Add Officer Popup Form Appears
+// When The User Clicks Add button Popup Form Appears
 function addPopups(strTableAddType) {
     let popup = document.getElementById(strTableAddType);
     popup.classList.add("show");
 };
 
 // Popup Add Vehicle Button Clicked
-function createVehicle() {
+async function createVehicle() {
+    //Get Form Inputs
+    let strVehicleFirstName = String(document.getElementById("vehicleFirstName").value);
+    let strVehicleLastName = String(document.getElementById("vehicleLastName").value);
+    let strLicenseNum = String(document.getElementById("licenseNumber").value);
+    let strLicenseState = String(document.getElementById("licenseState").value);
+    let strVehicleMake = String(document.getElementById("vehicleMake").value);
+    let strVehicleModel = String(document.getElementById("vehicleModel").value);
+    let strVehicleColor = String(document.getElementById("vehicleColor").value);
+    let arrAuthLots = [];
+    for (var option of document.getElementById("allowLots").options)
+    {
+        if (option.selected) {
+            arrAuthLots.push(option.value);
+        }
+    }
+
+    //Require a First Name Value
+    if (strVehicleFirstName == ""){
+        document.getElementById("popupVehicleWarning").innerHTML = "Provide A First Name Value";
+        return;
+    }
+
+    //Require a Last Name Value
+    if (strVehicleLastName == ""){
+        document.getElementById("popupVehicleWarning").innerHTML = "Provide A Last Name Value";
+        return;
+    }
+    
+    //Make sure plate is a at least 2 characters and no more than 8 otherswise send warning
+    if(strLicenseNum < 2 || strLicenseNum > 8){
+        document.getElementById("popupVehicleWarning").innerHTML = "License Plate Bad Format. License plates have 2 more more values but less than 9";
+        return;
+    }
+    
+    //Require a State Name Value
+    if (strLicenseState == "--Please choose an option--"){
+        document.getElementById("popupVehicleWarning").innerHTML = "Provide A License State Value";
+        return;
+    }
+
+    //Require a Vehicle Make Value
+    if (strVehicleMake == ""){
+        document.getElementById("popupVehicleWarning").innerHTML = "Provide A Car Make Value";
+        return;
+    }
+
+    //Require a Vehicle Model Value
+    if (strVehicleModel == ""){
+        document.getElementById("popupVehicleWarning").innerHTML = "Provide A Car Model Value";
+        return;
+    }
+
+    //Require a Vehicle Color Value
+    if (strVehicleColor == ""){
+        document.getElementById("popupVehicleWarning").innerHTML = "Provide A Car Color Value";
+        return;
+    }
+
     //close popup
+    document.getElementById("vehicleFirstName").value = "";
+    document.getElementById("vehicleLastName").value = "";
+    document.getElementById("licenseNumber").value = "";
+    document.getElementById("licenseState").value = "--Please choose an option--";
+    document.getElementById("vehicleMake").value = "";
+    document.getElementById("vehicleModel").value = "";
+    document.getElementById("vehicleColor").value = "";
+    document.getElementById("allowLots").value = "";
+    document.getElementById("popupVehicleWarning").value = "";
     let popup = document.getElementById("addVehiclePopup");
     popup.classList.remove("show");
 };
@@ -34,7 +101,15 @@ function createVehicle() {
 function closeVehicle() {
     let popup = document.getElementById("addVehiclePopup");
     //reset table values
-    
+    document.getElementById("vehicleFirstName").value = "";
+    document.getElementById("vehicleLastName").value = "";
+    document.getElementById("licenseNumber").value = "";
+    document.getElementById("licenseState").value = "--Please choose an option--";
+    document.getElementById("vehicleMake").value = "";
+    document.getElementById("vehicleModel").value = "";
+    document.getElementById("vehicleColor").value = "";
+    document.getElementById("allowLots").value = "";
+    document.getElementById("popupVehicleWarning").value = "";
     popup.classList.remove("show");
 }
 
@@ -55,7 +130,7 @@ async function createOfficer() {
         return
     }
     
-    //Test if password has it is a capital, lower case or numeric value
+    //Test if password has a capital, lower case or numeric value
     let isCapLetter = true;
     let isLowerLetter = true;
     let isNumeric = true;
@@ -262,5 +337,5 @@ const multiSelectWithoutCtrl = ( elemSelector ) => {
             }, false );
     });
   }
-  
-  multiSelectWithoutCtrl('#allowLots')
+
+ 

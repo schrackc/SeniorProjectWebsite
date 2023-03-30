@@ -279,7 +279,7 @@ function AddAllItemsToTheTicketsTable(TicketsDocList){
 window.onload = getAllDataOnce();
 
 //Export arrays so they can be added to 
-export {arrVehicles};
 export {arrOfficers};
 export {arrLots};
 export {arrOffenses};
+export {arrVehicles}

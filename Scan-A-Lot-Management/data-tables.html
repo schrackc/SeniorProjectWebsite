@@ -64,9 +64,90 @@
       <h3>
         <p>Vehicles</p>
         <!--Add New Vehicle Button-->
-        <button class="tableTools">Add Vehicle</button>
+        <button class="tableTools" id="addVehicleButton">Add Vehicle</button>
       </h3>
-    
+      <!--Popup Box When Adding New Vehicle-->
+      <div class="popup">
+        <div class="popuptext" id='addVehiclePopup'>
+          <!--Fill Boxes for Vehicle Add Vehicle Fields-->
+          <h4>Vehicle Owner First Name:</h4>
+          <input type="text" id="vehicleFirstName" placeholder="Owner First Name" class="popupInsertBox"/>
+          <h4>Vehicle Owner Last Name:</h4>
+          <input type="text" id="vehicleLastName" placeholder="Owner Last Name" class="popupInsertBox"/>
+          <h4>Vehicle License Number:</h4>
+          <input type="text" id="licenseNumber" placeholder="License Number" class="popupInsertBox"/>
+          <h4>Vehicle License State</h4>
+          <select id="licenseState" class="popupInsertBox">
+            <option>--Please choose an option--</option>
+            <option>Alabama</option>
+            <option>Alaska</option>
+            <option>Arizona</option>
+            <option>Arkansas</option>
+            <option>California</option>
+            <option>Colorado</option>
+            <option>Connecticut</option>
+            <option>Delaware</option>
+            <option>Florida</option>
+            <option>Georgia</option>
+            <option>Hawaii</option>
+            <option>Idaho</option>
+            <option>Illinois</option>
+            <option>Indiana</option>
+            <option>Iowa</option>
+            <option>Kansas</option>
+            <option>Kentucky</option>
+            <option>Louisiana</option>
+            <option>Maine</option>
+            <option>Maryland</option>
+            <option>Massachusetts</option>
+            <option>Michigan</option>
+            <option>Minnesota</option>
+            <option>Mississippi</option>
+            <option>Missouri</option>
+            <option>Montana</option>
+            <option>Nebraska</option>
+            <option>Nevada</option>
+            <option>New Hampshire</option>
+            <option>New Jersey</option>
+            <option>New Mexico</option>
+            <option>New York</option>
+            <option>North Carolina</option>
+            <option>North Dakota</option>
+            <option>Ohio</option>
+            <option>Oklahoma</option>
+            <option>Oregon</option>
+            <option>Pennsylvania</option>
+            <option>Rhode Island</option>
+            <option>South Carolina</option>
+            <option>South Dakota</option>
+            <option>Tennessee</option>
+            <option>Texas</option>
+            <option>Utah</option>
+            <option>Vermont</option>
+            <option>Virgnia</option>
+            <option>Washington</option>
+            <option>West Virginia</option>
+            <option>Wisconsin</option>
+            <option>Wyoming</option>
+          </select>
+          <h4>Vehicle Make:</h4>
+          <input type="text" id="vehicleMake" placeholder="Car Make" class="popupInsertBox"/>
+          <h4>Vehicle Model:</h4>
+          <input type="text" id="vehicleModel" placeholder="Car Model" class="popupInsertBox"/>
+          <h4>Vehicle Color:</h4>
+          <input type="text" id="vehicleColor" placeholder="Car Color" class="popupInsertBox"/>
+          <h4>Authorized Parking Lots (can select multiple by holding ctrl while selecting)</h4>
+          <select id="allowLots" multiple>
+          </select>
+          
+          <!--Popup Issue Warning-->
+          <div id="popupVehicleWarning" class="popupWarning"></div>
+
+          <!--Cancel Buttons and Add new Vehicle Button-->
+          <button class="popupCancelButton" id="popupVehicleCancel">Cancel</button>
+          <button class="popupUpdateButton" id="popupVehicleUpdateButton">Add Vehicle</button>
+        </div>
+      </div> 
       <table class="table table-striped">
         <thead>
           <th>License Number</th>
@@ -107,7 +188,7 @@
           <input type="password" id="password2" placeholder="Confirm Password" class="popupInsertBox"/>
           
           <!--Popup Issue Warning-->
-          <div id="popupOfficerWarning"></div>
+          <div id="popupOfficerWarning" class="popupWarning"></div>
 
           <!--Cancel Buttons and Add new Officer Button-->
           <button class="popupCancelButton" id="popupOfficerCancel">Cancel</button>
@@ -170,7 +251,7 @@
           <input type="text" id="fineAmount" placeholder="Fine Amount" class="popupInsertBox"/>
           
           <!--Popup Issue Warning-->
-          <div id="popupOffenseWarning"></div>
+          <div id="popupOffenseWarning" class="popupWarning"></div>
 
           <!--Cancel Buttons and Add new Offense Button-->
           <button class="popupCancelButton" id="popupOffenseCancel">Cancel</button>

@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <script type="module" src="firebaseLoginFunctions.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 <!--Firestore script-->
 <script type="module" src="FireBaseCollection.js"></script>
 <script type="module" src="addButton.js"></script>
+
 
 <html lang="en" style="visibility: hidden;" id="webpage" >
   <head>
@@ -38,7 +42,7 @@
       <h3>
         <p>Tickets</p>
       </h3>
-      <table>
+      <table class="table table-striped">
           <thead>
             <th>Ticket ID</th> 
             <th>Plate Number</th> 
@@ -63,7 +67,7 @@
         <button class="tableTools">Add Vehicle</button>
       </h3>
     
-      <table>
+      <table class="table table-striped">
         <thead>
           <th>License Number</th>
           <th>State</th>
@@ -111,7 +115,7 @@
         </div>
       </div>
       <!--Officer Data Table-->
-      <table  class="table table-dark">
+      <table class="table table-striped">
         <thead>
           <th>Last Name</th> 
           <th>First Name</th> 
@@ -130,7 +134,7 @@
         <!--New Parking Lot Button-->
         <button class="tableTools">Add Parking Lot</button>
       </h3>
-      <table>
+      <table class="table table-striped">
           <thead>
             <th>Lot Name</th>
             <th>Max Latitude</th>
@@ -173,7 +177,7 @@
           <button class="popupUpdateButton" id="popupOffenseUpdateButton">Add Offense</button>
         </div>
       </div>
-      <table>
+      <table class="table table-striped">
         <thead>
           <th>Offense Type</th>
           <th>Fine Amount</th>

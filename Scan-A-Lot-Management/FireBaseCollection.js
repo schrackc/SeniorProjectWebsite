@@ -233,7 +233,13 @@ function AddItemToTicketsTable(strCarMake, strCarModel, strFineAmount, strLicens
   var td9 = document.createElement('td');
   var td10 = document.createElement('td');
 
-  
+  //Compare ticket officer value (which is officer and output officer name)
+  for(let iOfficerIndex = 0; iOfficerIndex < arrOfficers.length; iOfficerIndex++){
+    if (arrOfficers[iOfficerIndex].OfficerID == strOfficer){
+      strOfficer = arrOfficers[iOfficerIndex].Username;
+      break;
+    }
+  }
   
   td1.innerHTML = iTicketNum;
   td2.innerHTML = strLicenseNum;

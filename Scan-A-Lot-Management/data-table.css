@@ -288,9 +288,8 @@ button {
 .popup .popuptext {
   visibility: hidden;
   overflow:scroll;
-  width: 500px;
+  min-width: 400px;
   max-width: 80%;
-  max-height: 70%;
   background-color: #555555f8;
   color: #fff;
   text-align: left;

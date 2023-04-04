@@ -23,6 +23,18 @@ function addPopups(strTableAddType) {
     popup.classList.add("show");
 };
 
+//Location Code
+let currentLog = -79.400219
+let currentLat = 40.292449
+const successCallback = (position) => {
+    console.log(position.coords);
+    currentLat = position.coords.latitude
+    currentLog = position.coords.longitude
+  };  
+const errorCallback = (error) => {
+    console.log(error);
+};
+
 // Popup Add Vehicle Button Clicked
 async function createVehicle() {
     //Get Form Inputs
@@ -226,17 +238,31 @@ function closeOfficer() {
 }
 
 // Popup Add Parking Lot Button Clicked Adds A New Parking Lot To The Database
-function createLot() {
+async function createLots() {
+    //Get Values
+    let strLotName = String(document.getElementById("lotName").value);
+
+
+    //If values are empty error is sent
+    if (strLotName == ""){
+        let warningMessage = document.getElementById("popupLotWarning");
+        warningMessage.innerHTML = "No Lot Name Given";
+        return
+    }
+
+    //reset table values
+    document.getElementById("lotName").value = "";
     //Close popup
-    let popup = document.getElementById("addLotPopup");
+    let popup = document.getElementById("addLotsPopup");
     popup.classList.remove("show");
 }
 
 // Closes Parking Lot Table
-function closeLot() {
-    let popup = document.getElementById("addLotPopup");
+function closeLots() {
+    let popup = document.getElementById("addLotsPopup");
     //reset table values
-    
+    document.getElementById("lotName").value = "";
+
     popup.classList.remove("show");
 }
 
@@ -337,6 +363,16 @@ addOfficerButton.addEventListener('click', function(){
 popupOfficerUpdateButton.addEventListener('click', createOfficer)
 //Cancel Officer Button Creation
 popupOfficerCancel.addEventListener('click', closeOfficer)
+
+//Button Clickers For Parking Lots Add Button
+addLotsButton.addEventListener('click', function(){
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+    addPopups("addLotsPopup");
+});
+//Create Parking Lots Button
+popupLotsUpdateButton.addEventListener('click', createLots)
+//Cancel Parking Lots Button Creation
+popupLotsCancel.addEventListener('click', closeLots)
 
 //Button Clickers For Offense Add Buttone
 addOffenseButton.addEventListener('click', function(){

@@ -213,8 +213,25 @@
       <h3>
         <p>Parking Lot</p>
         <!--New Parking Lot Button-->
-        <button class="tableTools">Add Parking Lot</button>
+        <button class="tableTools" id="addLotsButton">Add Parking Lot</button>
       </h3>
+      <!--Popup Box When Adding New Offense-->
+      <div class="popup">
+        <div class="popuptext" id='addLotsPopup'>
+          <!--Fill Boxes for Offense Add Offense Fields-->
+          <h4>Lot Name:</h4>
+          <input type="text" id="lotName" placeholder="Lot Name" class="popupInsertBox"/>
+          <h4>Select Map Area of Parking Lot</h4>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5554.626781721569!2d-79.4050937288737!3d40.291788092115105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8834d295a65ccb91%3A0x3618be7b85b61335!2sSt%20Vincent%20Archabbey%20College!5e0!3m2!1sen!2sus!4v1680575021810!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          
+          <!--Popup Issue Warning-->
+          <div id="popupLotWarning" class="popupWarning"></div>
+
+          <!--Cancel Buttons and Add new Offense Button-->
+          <button class="popupCancelButton" id="popupLotsCancel">Cancel</button>
+          <button class="popupUpdateButton" id="popupLotsUpdateButton">Add Lot</button>
+        </div>
+      </div>
       <table class="table table-striped">
           <thead>
             <th>Lot Name</th>

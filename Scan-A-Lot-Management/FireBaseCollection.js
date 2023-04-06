@@ -278,7 +278,6 @@ function AddAllItemsToTheTicketsTable(TicketsDocList){
     AddItemToTicketsTable(element.CarMake, element.CarModel, element.FineAmount, element.LicenseNum, element.Offense, element.Officer, element.ParkingLot, element.TicketNum, element.Time, element.LicenseState);
     
   });
-
 }
 
 //Once window loads it gets data from firestore

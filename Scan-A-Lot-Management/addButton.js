@@ -96,18 +96,27 @@ async function createVehicle() {
     }
 
     //Create new Vehicle to fireStore
-    //Determine Document ID
-    var strDocName;
-    if (arrVehicles[arrVehicles.length - 1].IDNum + 1 < 10){
-        strDocName = "Veh00" + String(arrVehicles[arrVehicles.length - 1].IDNum + 1);
-    }else if(arrVehicles[arrVehicles.length - 1].IDNum + 1 < 100){
-        strDocName = "Veh0" + String(arrVehicles[arrVehicles.length - 1].IDNum + 1);
+    //What is the largest ID number
+    let strHighestID = parseInt(arrVehicles[0].IDNum);
+    for(let iVehicleIndex = 1; iVehicleIndex < arrVehicles.length; iVehicleIndex++){
+        if(strHighestID < arrVehicles[iVehicleIndex].IDNum){
+            strHighestID = parseInt(arrVehicles[iVehicleIndex].IDNum);
+        }
+    }
+    strHighestID++;
+
+    //Create Next Document Name
+    let strDocName = ""
+    if (strHighestID < 10){
+        strDocName = String("Veh00" + String(strHighestID));
+    }else if(strHighestID < 100){
+        strDocName = String("Veh0" + String(strHighestID));
     }else{
-        strDocName = "Veh" + String(arrVehicles[arrVehicles.length - 1].IDNum + 1);
+        strDocName = String("Veh" + String(strHighestID));
     }
      //Create new Document to Vehicles Collection
      await setDoc(doc(db, "Vehicles", strDocName), {
-        IDNum: arrVehicles[arrVehicles.length - 1].IDNum + 1,
+        IDNum: strDocName.substring(3,),
         OwnerFirstName: strVehicleFirstName,
         OwnerLastName: strVehicleLastName,
         LicenseNum: strLicenseNum,
@@ -126,7 +135,9 @@ async function createVehicle() {
     document.getElementById("vehicleMake").value = "";
     document.getElementById("vehicleModel").value = "";
     document.getElementById("vehicleColor").value = "";
-    document.getElementById("allowLots").value = "";
+    while (document.getElementById("allowLots").firstChild) {
+        document.getElementById("allowLots").removeChild(document.getElementById("allowLots").firstChild);
+    }
     document.getElementById("popupVehicleWarning").value = "";
     let popup = document.getElementById("addVehiclePopup");
     popup.classList.remove("show");
@@ -143,7 +154,9 @@ function closeVehicle() {
     document.getElementById("vehicleMake").value = "";
     document.getElementById("vehicleModel").value = "";
     document.getElementById("vehicleColor").value = "";
-    document.getElementById("allowLots").value = "";
+    while (document.getElementById("allowLots").firstChild) {
+        document.getElementById("allowLots").removeChild(document.getElementById("allowLots").firstChild);
+    }
     document.getElementById("popupVehicleWarning").value = "";
     popup.classList.remove("show");
 }
@@ -191,17 +204,26 @@ async function createOfficer() {
     //Create new firebase authentication account
     createUserWithEmailAndPassword(auth, strEmail, strPassword);
 
-
-    //Create new officer to fireStore
     //Determine Document ID
-    var strDocName;
-    if (arrOfficers[arrOfficers.length - 1].OfficerID + 1 < 10){
-        strDocName = "Off00" + String(arrOfficers[arrOfficers.length - 1].OfficerID + 1);
-    }else if(arrOfficers[arrOfficers.length - 1].OfficerID + 1 < 100){
-        strDocName = "Off0" + String(arrOfficers[arrOfficers.length - 1].OfficerID + 1);
-    }else{
-        strDocName = "Off" + String(arrOfficers[arrOfficers.length - 1].OfficerID + 1);
+    //What is the largest ID number
+    let strHighestID = parseInt(arrOfficers[0].OfficerID);
+    for(let iOfficerIndex = 1; iOfficerIndex < arrOfficers.length; iOfficerIndex++){
+        if(strHighestID < arrOfficers[iOfficerIndex].OfficerID){
+            strHighestID = parseInt(arrOfficers[iOfficerIndex].OfficerID);
+        }
     }
+    strHighestID++;
+
+    //Create Next Document Name
+    let strDocName = ""
+    if (strHighestID < 10){
+        strDocName = "Off00" + String(strHighestID);
+    }else if(strHighestID < 100){
+        strDocName = "Off0" + String(strHighestID);
+    }else{
+        strDocName = "Off" + String(strHighestID);
+    }
+    
     //Create new Document to Officers Collection
     await setDoc(doc(db, "Officers", strDocName), {
         OfficerID: arrOfficers[arrOfficers.length - 1].OfficerID + 1,
@@ -338,7 +360,7 @@ function closeOffense() {
 addVehicleButton.addEventListener('click', function(){
     addPopups("addVehiclePopup");
     //Add Authorized Lots in the parking lot dropdown
-    const allowLotsDropDown = document.getElementById("allowLots")
+    const allowLotsDropDown = document.getElementById("allowLots");
     //Loop Parking Lots as option in drop down
     for (let iDropDownIndex = 0; iDropDownIndex < arrLots.length; iDropDownIndex++){
         let option = document.createElement("option");

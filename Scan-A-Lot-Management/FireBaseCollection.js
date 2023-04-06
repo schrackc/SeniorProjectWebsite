@@ -81,6 +81,7 @@ function AddItemToOfficerTable(LastName, FirstName, Username, Email){
   var td2 = document.createElement('td');
   var td3 = document.createElement('td');
   var td4 = document.createElement('td');
+  var td5 = document.createElement('dropbtn')
 
   //td1.innerHTML = ++offNo;
   
@@ -88,11 +89,13 @@ function AddItemToOfficerTable(LastName, FirstName, Username, Email){
   td2.innerHTML = FirstName;
   td3.innerHTML = Username;
   td4.innerHTML = Email;
+  td5.innerHTML = Modify;
 
   trow.appendChild(td1);
   trow.appendChild(td2);
   trow.appendChild(td3);
   trow.appendChild(td4);
+  trow.appendChild(td5);
 
   tOfficerbody.appendChild(trow);
 }
@@ -110,14 +113,18 @@ function AddItemToOffensesTable(OffenseType, Fine){
   var trow = document.createElement('tr');
   var td1 = document.createElement('td');
   var td2 = document.createElement('td');
+  var td3 = document.createElement('dropbtn')
+
 
   //td1.innerHTML = ++offNo;
   
   td1.innerHTML = OffenseType;
   td2.innerHTML = Fine;
+  td3.innerHTML = Modify;
 
   trow.appendChild(td1);
   trow.appendChild(td2);
+  trow.appendChild(td3);
 
   tOffensesbody.appendChild(trow);
   
@@ -139,6 +146,8 @@ function AddItemToParkingLotsTable(LotName, MaxLatitude, MaxLongitude, MinLatitu
   var td3 = document.createElement('td');
   var td4 = document.createElement('td');
   var td5 = document.createElement('td');
+  var td6 = document.createElement('dropbtn')
+
 
   //td1.innerHTML = ++offNo;
   
@@ -147,12 +156,14 @@ function AddItemToParkingLotsTable(LotName, MaxLatitude, MaxLongitude, MinLatitu
   td3.innerHTML = MaxLongitude;
   td4.innerHTML = MinLatitude;
   td5.innerHTML = MinLongitude;
+  td6.innerHTML = Modify;
 
   trow.appendChild(td1);
   trow.appendChild(td2);
   trow.appendChild(td3);
   trow.appendChild(td4);
   trow.appendChild(td5);
+  trow.appendChild(td6);
 
   tParkingLotsbody.appendChild(trow);
   
@@ -178,6 +189,8 @@ function AddItemToVehiclesTable(Color, IDNum, LicenseNum, LicenseState, Make, Mo
   var td7 = document.createElement('td');
   var td8 = document.createElement('td');
   var td9 = document.createElement('td');
+  var td10 = document.createElement('dropbtn')
+
 
   //td1.innerHTML = ++offNo;
   
@@ -190,6 +203,7 @@ function AddItemToVehiclesTable(Color, IDNum, LicenseNum, LicenseState, Make, Mo
   td7.innerHTML = OwnerFirstName;
   td8.innerHTML = OwnerLastName;
   td9.innerHTML = ParkingLot;
+  td10.innerHTML = Modify;
 
 
   trow.appendChild(td1);
@@ -201,6 +215,7 @@ function AddItemToVehiclesTable(Color, IDNum, LicenseNum, LicenseState, Make, Mo
   trow.appendChild(td7);
   trow.appendChild(td8);
   trow.appendChild(td9);
+  trow.appendChild(td10);
 
   tVehiclesbody.appendChild(trow);
   
@@ -302,32 +317,5 @@ window.onclick = function(event) {
     }
   }
 }
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
   }
 }

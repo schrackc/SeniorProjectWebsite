@@ -89,7 +89,7 @@ function AddItemToOfficerTable(LastName, FirstName, Username, Email){
   td2.innerHTML = FirstName;
   td3.innerHTML = Username;
   td4.innerHTML = Email;
-  td5.innerHTML = Modify;
+  td5.innerHTML = 'Modify';
 
   trow.appendChild(td1);
   trow.appendChild(td2);
@@ -120,7 +120,7 @@ function AddItemToOffensesTable(OffenseType, Fine){
   
   td1.innerHTML = OffenseType;
   td2.innerHTML = Fine;
-  td3.innerHTML = Modify;
+  td3.innerHTML = 'Modify';
 
   trow.appendChild(td1);
   trow.appendChild(td2);
@@ -156,7 +156,7 @@ function AddItemToParkingLotsTable(LotName, MaxLatitude, MaxLongitude, MinLatitu
   td3.innerHTML = MaxLongitude;
   td4.innerHTML = MinLatitude;
   td5.innerHTML = MinLongitude;
-  td6.innerHTML = Modify;
+  td6.innerHTML = 'Modify';
 
   trow.appendChild(td1);
   trow.appendChild(td2);
@@ -203,7 +203,7 @@ function AddItemToVehiclesTable(Color, IDNum, LicenseNum, LicenseState, Make, Mo
   td7.innerHTML = OwnerFirstName;
   td8.innerHTML = OwnerLastName;
   td9.innerHTML = ParkingLot;
-  td10.innerHTML = Modify;
+  td10.innerHTML = 'Modify';
 
 
   trow.appendChild(td1);
@@ -255,7 +255,7 @@ function AddItemToTicketsTable(CarMake, CarModel, FineAmount, LicenseNum, Offens
   td7.innerHTML = ParkingLot;
   td8.innerHTML = TicketNum;
   td9.innerHTML = Time;
-  td10.innerHTML = Modify;
+  td10.innerHTML = 'Modify';
   
 
   trow.appendChild(td1);

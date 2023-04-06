@@ -96,6 +96,7 @@ function AddItemToOfficerTable(LastName, FirstName, Username, Email){
 
   tOfficerbody.appendChild(trow);
 }
+
 function AddAllItemsToTheOfficerTable(OfficerDocList){
   offNo=0;
   tOfficerbody.innerHTML="";
@@ -224,12 +225,14 @@ function AddItemToTicketsTable(CarMake, CarModel, FineAmount, LicenseNum, Offens
   var td7 = document.createElement('td');
   var td8 = document.createElement('td');
   var td9 = document.createElement('td');
+  var td10 = document.createElement('dropbtn')
+
   
 
   //td1.innerHTML = ++offNo;
   
   td1.innerHTML = CarMake;
-  td2.innerHTML = CarModel;
+  td2.innerHTML = CarModel; 
   td3.innerHTML = FineAmount;
   td4.innerHTML = LicenseNum;
   td5.innerHTML = Offense;
@@ -237,6 +240,7 @@ function AddItemToTicketsTable(CarMake, CarModel, FineAmount, LicenseNum, Offens
   td7.innerHTML = ParkingLot;
   td8.innerHTML = TicketNum;
   td9.innerHTML = Time;
+  td10.innerHTML = Modify;
   
 
   trow.appendChild(td1);
@@ -248,6 +252,7 @@ function AddItemToTicketsTable(CarMake, CarModel, FineAmount, LicenseNum, Offens
   trow.appendChild(td7);
   trow.appendChild(td8);
   trow.appendChild(td9);
+  trow.appendChild(td10);
   
 
   tTicketsbody.appendChild(trow);
@@ -272,3 +277,57 @@ export {arrVehicles};
 export {arrOfficers};
 export {arrLots};
 export {arrOffenses};
+
+//Modify dropdown
+class ModifyBtn {
+  constructor(){
+    const button = document.createElement('button')
+    button.innerText = 'Modify'
+    button.id = 'dropbtn'
+    button.addEventListener('click', displayDrop,() => {
+    })
+
+
+    
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}

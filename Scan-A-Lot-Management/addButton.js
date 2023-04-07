@@ -23,18 +23,6 @@ function addPopups(strTableAddType) {
     popup.classList.add("show");
 };
 
-//Location Code
-let currentLog = -79.400219
-let currentLat = 40.292449
-const successCallback = (position) => {
-    console.log(position.coords);
-    currentLat = position.coords.latitude
-    currentLog = position.coords.longitude
-  };  
-const errorCallback = (error) => {
-    console.log(error);
-};
-
 // Popup Add Vehicle Button Clicked
 async function createVehicle() {
     //Get Form Inputs
@@ -388,8 +376,7 @@ popupOfficerCancel.addEventListener('click', closeOfficer)
 
 //Button Clickers For Parking Lots Add Button
 addLotsButton.addEventListener('click', function(){
-    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-    addPopups("addLotsPopup");
+    addPopups("addLotsPopup");;
 });
 //Create Parking Lots Button
 popupLotsUpdateButton.addEventListener('click', createLots)
@@ -404,3 +391,25 @@ addOffenseButton.addEventListener('click', function(){
 popupOffenseUpdateButton.addEventListener('click', createOffense)
 //Cancel Offense Button Creation
 popupOffenseCancel.addEventListener('click', closeOffense)
+
+
+//Get Current Location Code
+const location = { lat: -79.400219, lng: 40.292449 };
+const successCallback = (position) => {
+    console.log(position.coords);
+    location.lat = position.coords.latitude
+    location.lng = position.coords.longitude
+  };  
+const errorCallback = (error) => {
+    console.log(error);
+};
+navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+
+//Code To Get Map Object
+//TomTom map connection
+let map = tt.map({
+    container: 'map',
+    key: 'bAuwCtTRl1XJEQYW9RHosFLKrJ3PD2rJ',
+    center: location,
+    zoom: 15,
+  })

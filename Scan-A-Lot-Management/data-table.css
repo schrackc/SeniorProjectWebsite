@@ -8,7 +8,7 @@ body {
 
 /* Heading for Popups*/
 h4{
-  color: black;
+  color: rgb(255, 255, 255);
   margin: 5px;
   font-size: 20px;
 }
@@ -291,7 +291,7 @@ button {
   min-width: 400px;
   max-width: 80%;
   background-color: #555555f8;
-  color: #fff;
+  color: #ffffff;
   text-align: left;
   border-radius: 6px;
   padding: 20px 20px;

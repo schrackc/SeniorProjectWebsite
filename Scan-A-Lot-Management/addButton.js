@@ -376,7 +376,8 @@ popupOfficerCancel.addEventListener('click', closeOfficer)
 
 //Button Clickers For Parking Lots Add Button
 addLotsButton.addEventListener('click', function(){
-    addPopups("addLotsPopup");;
+    addPopups("addLotsPopup");
+    createMap();
 });
 //Create Parking Lots Button
 popupLotsUpdateButton.addEventListener('click', createLots)
@@ -407,9 +408,12 @@ navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 
 //Code To Get Map Object
 //TomTom map connection
-let map = tt.map({
-    container: 'map',
-    key: 'bAuwCtTRl1XJEQYW9RHosFLKrJ3PD2rJ',
-    center: location,
-    zoom: 15,
-  })
+function createMap(){
+    let map = tt.map({
+        container: 'map',
+        key: 'bAuwCtTRl1XJEQYW9RHosFLKrJ3PD2rJ',
+        center: location,
+        zoom: 15,
+        style: 'mapstyle.json'
+    })
+}

@@ -18,8 +18,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 //Corrdinate Values for map
-let position1;
-let position2;
 let maxLongitude;
 let maxLatitude;
 let minLongitude;
@@ -268,8 +266,20 @@ async function createLots() {
         return
     }
 
+    //If two marker are not selected on the map provide error
+    if (minLongitude == null){
+        let warningMessage = document.getElementById("popupLotWarning");
+        warningMessage.innerHTML = "Mapping Requires Two Markers";
+        return
+    }
+
+
     //reset table values
     document.getElementById("lotName").value = "";
+    document.getElementById("longitudeVals").innerHTML = "";
+    document.getElementById("latitudeVals").innerHTML = "";
+    document.getElementById("popupLotWarning").innerHTML = "";
+
     //Close popup
     let popup = document.getElementById("addLotsPopup");
     popup.classList.remove("show");
@@ -280,6 +290,9 @@ function closeLots() {
     let popup = document.getElementById("addLotsPopup");
     //reset table values
     document.getElementById("lotName").value = "";
+    document.getElementById("longitudeVals").innerHTML = "";
+    document.getElementById("latitudeVals").innerHTML = "";
+    document.getElementById("popupLotWarning").innerHTML = "";
 
     popup.classList.remove("show");
 }
@@ -384,8 +397,14 @@ popupOfficerCancel.addEventListener('click', closeOfficer)
 
 //Button Clickers For Parking Lots Add Button
 addLotsButton.addEventListener('click', function(){
-    addPopups("addLotsPopup");
+    //null corrdinate min/max values
+    maxLongitude = null;
+    maxLatitude = null;
+    minLongitude = null;
+    minLatitude = null;
+    
     createMap();
+    addPopups("addLotsPopup");
 });
 //Create Parking Lots Button
 popupLotsUpdateButton.addEventListener('click', createLots)
@@ -417,6 +436,8 @@ navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 //Code To Get Map Object
 //TomTom map connection
 function createMap(){
+    let position1;
+    let position2;
     let lotMarker1
     let lotMarker2
     
@@ -454,7 +475,7 @@ function createMap(){
         //Remove marker if two exist
         if (lotMarker1 != null){
             lotMarker1.remove();
-            position1.remove();
+            position1 = null;
         }
         if (lotMarker2 != null){
             lotMarker1 = lotMarker2;

@@ -18,6 +18,9 @@ h5{
   margin: 5px;
   font-size: 16px;
 }
+h5 p{
+  font-size: 14px;
+}
 
 /* Layout Design for Table Name */
 h3{

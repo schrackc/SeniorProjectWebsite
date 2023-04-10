@@ -478,9 +478,31 @@ function createMap(){
         if(position1 == null){
             maxLongitude = position2.lng;
             maxLatitude = position2.lat;
-            document.getElementById("longitudeVals").value = maxLatitude + "/No Value"
-            document.getElementById("latitudeVals").value = maxLatitude + "/No Value"
+            document.getElementById("longitudeVals").innerHTML = maxLongitude + " / No Value";
+            document.getElementById("latitudeVals").innerHTML = maxLatitude + " / No Value";
             return;
         }
+
+        //Find the max and min of longitude
+        if(position1.lng > position2.lng){
+            maxLongitude = position1.lng;
+            minLongitude = position2.lng;
+        }else{
+            maxLongitude = position2.lng;
+            minLongitude = position1.lng;
+        }
+
+        //Find the max min of latitude
+        if(position1.lat > position2.lat){
+            maxLatitude = position1.lat;
+            minLatitude = position2.lat;
+        }else{
+            maxLatitude = position2.lng;
+            minLatitude = position1.lng;
+        }
+
+        //Show screen results
+        document.getElementById("longitudeVals").innerHTML = maxLongitude + " / " + minLongitude;
+        document.getElementById("latitudeVals").innerHTML = maxLatitude + " / " + minLatitude;
     }
 }

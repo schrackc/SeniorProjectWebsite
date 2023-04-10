@@ -306,6 +306,29 @@ window.onclick = function(event) {
     }
   }
 }
+//edit tabel rows
+function productAddToTable() {
+  // First check if a <tbody> tag exists, add one if not
+  if ($("#productTable tbody").length == 0) {
+      $("#productTable").append("<tbody></tbody>");
+  }
+
+  // Append product to the table
+  $("#productTable tbody").append(
+      "<tr>" +
+      "<td>" + $("#productname").val() + "</td>" +
+      "<td>" + $("#introdate").val() + "</td>" +
+      "<td>" + $("#url").val() + "</td>" +
+      "<td>" +
+      "<button type='button' 
+               onclick='productDelete(this);' 
+               class='btn btn-default'>" +;
+      `<span class='glyphicon glyphicon-remove' /></button></td></tr>`);
+}
+//remove tabel row 
+function productDelete(ctl) {
+  $(ctl).parents("tr").remove();
+}
   }
 }
 

@@ -3,7 +3,10 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-<!--Firestore script-->
+<!--TomTom scripts-->
+<script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.23.0/maps/maps-web.min.js"></script>
+<script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.23.0/services/services-web.min.js"></script>
+<!--Firestore scripts-->
 <script type="module" src="FireBaseCollection.js"></script>
 <script type="module" src="addButton.js"></script>
 
@@ -11,6 +14,7 @@
 <html lang="en" style="visibility: hidden;" id="webpage" >
   <head>
     <title>Scan-A-Lot Management</title>
+    <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.23.0/maps/maps.css"/>
     <link rel="icon" type="image/x-icon" href="Images/logo.webp"/>
     <link rel="stylesheet" href="data-table.css">
     <script src="data-table.js"></script>
@@ -221,8 +225,15 @@
           <!--Fill Boxes for Offense Add Offense Fields-->
           <h4>Lot Name:</h4>
           <input type="text" id="lotName" placeholder="Lot Name" class="popupInsertBox"/>
-          <h4>Select Map Area of Parking Lot</h4>
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5554.626781721569!2d-79.4050937288737!3d40.291788092115105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8834d295a65ccb91%3A0x3618be7b85b61335!2sSt%20Vincent%20Archabbey%20College!5e0!3m2!1sen!2sus!4v1680575021810!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <h4>Select On Map Click Two Opposite Points of Parking Lot</h4>
+          <div id="map"></div>
+          <h4>Coordinates:</h4>
+          <h5>Longitude (Max/Min):
+            <p id="longitudeVals"></p>
+          </h5>
+          <h5>Latitude (Max/Min):
+            <p id="latitudeVals"></p>
+          </h5>
           
           <!--Popup Issue Warning-->
           <div id="popupLotWarning" class="popupWarning"></div>

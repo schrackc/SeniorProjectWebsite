@@ -17,22 +17,16 @@ const auth = getAuth();
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+//Corrdinate Values for map
+let maxLongitude;
+let maxLatitude;
+let minLongitude;
+let minLatitude;
+
 // When The User Clicks Add button Popup Form Appears
 function addPopups(strTableAddType) {
     let popup = document.getElementById(strTableAddType);
     popup.classList.add("show");
-};
-
-//Location Code
-let currentLog = -79.400219
-let currentLat = 40.292449
-const successCallback = (position) => {
-    console.log(position.coords);
-    currentLat = position.coords.latitude
-    currentLog = position.coords.longitude
-  };  
-const errorCallback = (error) => {
-    console.log(error);
 };
 
 // Popup Add Vehicle Button Clicked
@@ -272,8 +266,28 @@ async function createLots() {
         return
     }
 
+    //If two marker are not selected on the map provide error
+    if (minLongitude == null){
+        let warningMessage = document.getElementById("popupLotWarning");
+        warningMessage.innerHTML = "Mapping Requires Two Markers";
+        return
+    }
+
+    //Create new Document to Officers Collection
+    await setDoc(doc(db, "ParkingLots", strLotName), {
+        LotName: strLotName,
+        MaxLongitude: maxLongitude,
+        MaxLatitude: maxLatitude,
+        MinLongitude: minLongitude,
+        MinLatitude: minLatitude 
+    });
+
     //reset table values
     document.getElementById("lotName").value = "";
+    document.getElementById("longitudeVals").innerHTML = "";
+    document.getElementById("latitudeVals").innerHTML = "";
+    document.getElementById("popupLotWarning").innerHTML = "";
+
     //Close popup
     let popup = document.getElementById("addLotsPopup");
     popup.classList.remove("show");
@@ -284,6 +298,9 @@ function closeLots() {
     let popup = document.getElementById("addLotsPopup");
     //reset table values
     document.getElementById("lotName").value = "";
+    document.getElementById("longitudeVals").innerHTML = "";
+    document.getElementById("latitudeVals").innerHTML = "";
+    document.getElementById("popupLotWarning").innerHTML = "";
 
     popup.classList.remove("show");
 }
@@ -388,7 +405,13 @@ popupOfficerCancel.addEventListener('click', closeOfficer)
 
 //Button Clickers For Parking Lots Add Button
 addLotsButton.addEventListener('click', function(){
-    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+    //null corrdinate min/max values
+    maxLongitude = null;
+    maxLatitude = null;
+    minLongitude = null;
+    minLatitude = null;
+    
+    createMap();
     addPopups("addLotsPopup");
 });
 //Create Parking Lots Button
@@ -404,3 +427,111 @@ addOffenseButton.addEventListener('click', function(){
 popupOffenseUpdateButton.addEventListener('click', createOffense)
 //Cancel Offense Button Creation
 popupOffenseCancel.addEventListener('click', closeOffense)
+
+
+//Get Current Location Code
+const location = { lat: -79.400219, lng: 40.292449 };
+const successCallback = (position) => {
+    console.log(position.coords);
+    location.lat = position.coords.latitude
+    location.lng = position.coords.longitude
+  };  
+const errorCallback = (error) => {
+    console.log(error);
+};
+navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+
+//Code To Get Map Object
+//TomTom map connection
+function createMap(){
+    let position1;
+    let position2;
+    let lotMarker1
+    let lotMarker2
+    
+    let map = tt.map({
+        container: 'map',
+        key: 'bAuwCtTRl1XJEQYW9RHosFLKrJ3PD2rJ',
+        center: location,
+        zoom: 15,
+        style: 'mapstyle.json'
+    })
+
+    //Creates marker
+    function createLotMarker(markerCoordinates) {
+        const lotMarkerElement = document.createElement("div")
+        lotMarkerElement.innerHTML = "<img src='Images/mapPoint.webp' style='width: 30px; height: 30px';>"
+        return new tt.Marker({ element: lotMarkerElement })
+          .setLngLat(markerCoordinates)
+          .addTo(map)
+      }
+
+    //Shows markers on map
+    function drawLotMarkerOnMap(geoResponse) {
+        if (
+            geoResponse &&
+            geoResponse.addresses &&
+            geoResponse.addresses[0].address.freeformAddress
+        ) {
+            lotMarker2 = createLotMarker(
+            geoResponse.addresses[0].position)
+        }
+    }
+
+    //Map markers appear on click
+    map.on("click", function (event) {
+        //Remove marker if two exist
+        if (lotMarker1 != null){
+            lotMarker1.remove();
+            position1 = null;
+        }
+        if (lotMarker2 != null){
+            lotMarker1 = lotMarker2;
+            position1 = position2;
+        }
+        const position = event.lngLat;
+        position2 = position;
+        tt.services.reverseGeocode({
+            key: 'bAuwCtTRl1XJEQYW9RHosFLKrJ3PD2rJ',
+            position: position,
+        })
+        .then(function (results) {
+            drawLotMarkerOnMap(results);
+        })
+        sortCorrdinates();
+    })
+
+    //Sorts positions and gives corrdinate values to find max/min of longitude and latitude back in the popup
+    function sortCorrdinates(){
+        //If there is only one position is give
+        if(position1 == null){
+            maxLongitude = position2.lng;
+            maxLatitude = position2.lat;
+            document.getElementById("longitudeVals").innerHTML = maxLongitude + " / No Value";
+            document.getElementById("latitudeVals").innerHTML = maxLatitude + " / No Value";
+            return;
+        }
+
+        //Find the max and min of longitude
+        if(position1.lng > position2.lng){
+            maxLongitude = position1.lng;
+            minLongitude = position2.lng;
+        }else{
+            maxLongitude = position2.lng;
+            minLongitude = position1.lng;
+        }
+
+        //Find the max min of latitude
+        if(position1.lat > position2.lat){
+            maxLatitude = position1.lat;
+            minLatitude = position2.lat;
+        }else{
+            maxLatitude = position2.lat;
+            minLatitude = position1.lat;
+        }
+
+        //Show screen results
+        document.getElementById("longitudeVals").innerHTML = maxLongitude + " / " + minLongitude;
+        document.getElementById("latitudeVals").innerHTML = maxLatitude + " / " + minLatitude;
+    }
+}

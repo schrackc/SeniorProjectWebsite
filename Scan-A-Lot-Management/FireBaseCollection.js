@@ -190,9 +190,6 @@ function AddItemToVehiclesTable(Color, IDNum, LicenseNum, LicenseState, Make, Mo
   var td8 = document.createElement('td');
   var td9 = document.createElement('td');
   var td10 = document.createElement('dropbtn')
-
-
-  //td1.innerHTML = ++offNo;
   
   td1.innerHTML = Color;
   td2.innerHTML = IDNum;
@@ -204,7 +201,6 @@ function AddItemToVehiclesTable(Color, IDNum, LicenseNum, LicenseState, Make, Mo
   td8.innerHTML = OwnerLastName;
   td9.innerHTML = ParkingLot;
   td10.innerHTML = 'Modify';
-
 
   trow.appendChild(td1);
   trow.appendChild(td2);
@@ -242,10 +238,6 @@ function AddItemToTicketsTable(CarMake, CarModel, FineAmount, LicenseNum, Offens
   var td9 = document.createElement('td');
   var td10 = document.createElement('dropbtn')
 
-  
-
-  //td1.innerHTML = ++offNo;
-  
   td1.innerHTML = CarMake;
   td2.innerHTML = CarModel; 
   td3.innerHTML = FineAmount;
@@ -257,7 +249,6 @@ function AddItemToTicketsTable(CarMake, CarModel, FineAmount, LicenseNum, Offens
   td9.innerHTML = Time;
   td10.innerHTML = 'Modify';
   
-
   trow.appendChild(td1);
   trow.appendChild(td2);
   trow.appendChild(td3);
@@ -302,8 +293,6 @@ class ModifyBtn {
     button.addEventListener('click', displayDrop,() => {
     })
 
-
-    
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(event) {
   if (!event.target.matches('.dropbtn')) {
@@ -318,4 +307,19 @@ window.onclick = function(event) {
   }
 }
   }
+}
+
+//tab stays selected
+function OpenTab(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("id");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("id");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" #8A2BE2 ", "");
+  }
+  document.getElementById(id).style.display = "block";
+  evt.currentTarget.className += " #8A2BE2";
 }

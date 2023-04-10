@@ -17,6 +17,14 @@ const auth = getAuth();
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+//Corrdinate Values for map
+let position1;
+let position2;
+let maxLongitude;
+let maxLatitude;
+let minLongitude;
+let minLatitude;
+
 // When The User Clicks Add button Popup Form Appears
 function addPopups(strTableAddType) {
     let popup = document.getElementById(strTableAddType);
@@ -409,6 +417,9 @@ navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 //Code To Get Map Object
 //TomTom map connection
 function createMap(){
+    let lotMarker1
+    let lotMarker2
+    
     let map = tt.map({
         container: 'map',
         key: 'bAuwCtTRl1XJEQYW9RHosFLKrJ3PD2rJ',
@@ -416,4 +427,60 @@ function createMap(){
         zoom: 15,
         style: 'mapstyle.json'
     })
+
+    //Creates marker
+    function createLotMarker(markerCoordinates) {
+        const lotMarkerElement = document.createElement("div")
+        lotMarkerElement.innerHTML = "<img src='Images/mapPoint.webp' style='width: 30px; height: 30px';>"
+        return new tt.Marker({ element: lotMarkerElement })
+          .setLngLat(markerCoordinates)
+          .addTo(map)
+      }
+
+    //Shows markers on map
+    function drawLotMarkerOnMap(geoResponse) {
+        if (
+            geoResponse &&
+            geoResponse.addresses &&
+            geoResponse.addresses[0].address.freeformAddress
+        ) {
+            lotMarker2 = createLotMarker(
+            geoResponse.addresses[0].position)
+        }
+    }
+
+    //Map markers appear on click
+    map.on("click", function (event) {
+        //Remove marker if two exist
+        if (lotMarker1 != null){
+            lotMarker1.remove();
+            position1.remove();
+        }
+        if (lotMarker2 != null){
+            lotMarker1 = lotMarker2;
+            position1 = position2;
+        }
+        const position = event.lngLat;
+        position2 = position;
+        tt.services.reverseGeocode({
+            key: 'bAuwCtTRl1XJEQYW9RHosFLKrJ3PD2rJ',
+            position: position,
+        })
+        .then(function (results) {
+            drawLotMarkerOnMap(results);
+        })
+        sortCorrdinates();
+    })
+
+    //Sorts positions and gives corrdinate values to find max/min of longitude and latitude back in the popup
+    function sortCorrdinates(){
+        //If there is only one position is give
+        if(position1 == null){
+            maxLongitude = position2.lng;
+            maxLatitude = position2.lat;
+            document.getElementById("longitudeVals").value = maxLatitude + "/No Value"
+            document.getElementById("latitudeVals").value = maxLatitude + "/No Value"
+            return;
+        }
+    }
 }

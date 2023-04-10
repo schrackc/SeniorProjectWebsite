@@ -12,6 +12,12 @@ h4{
   margin: 5px;
   font-size: 20px;
 }
+/* Heading for Popups*/
+h5{
+  color: rgb(255, 255, 255);
+  margin: 5px;
+  font-size: 16px;
+}
 
 /* Layout Design for Table Name */
 h3{

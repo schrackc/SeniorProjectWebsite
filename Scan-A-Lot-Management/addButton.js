@@ -273,6 +273,14 @@ async function createLots() {
         return
     }
 
+    //Create new Document to Officers Collection
+    await setDoc(doc(db, "ParkingLots", strLotName), {
+        LotName: strLotName,
+        MaxLongitude: maxLongitude,
+        MaxLatitude: maxLatitude,
+        MinLongitude: minLongitude,
+        MinLatitude: minLatitude 
+    });
 
     //reset table values
     document.getElementById("lotName").value = "";
@@ -518,8 +526,8 @@ function createMap(){
             maxLatitude = position1.lat;
             minLatitude = position2.lat;
         }else{
-            maxLatitude = position2.lng;
-            minLatitude = position1.lng;
+            maxLatitude = position2.lat;
+            minLatitude = position1.lat;
         }
 
         //Show screen results

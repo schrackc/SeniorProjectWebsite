@@ -24,7 +24,7 @@ dropdown.forEach(dropdown => {
   const caret = dropdown.querySelector('.caret');
   const menu = dropdown.querySelector('.menu');
   const options = dropdown.querySelector('.menu li');
-  const seleced = dropdown.querySelector('.selected');
+  const selected = dropdown.querySelector('.selected');
 
 
   //add a click event to the select element

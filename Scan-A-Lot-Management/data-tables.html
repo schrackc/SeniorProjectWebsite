@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <script type="module" src="firebaseLoginFunctions.js"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+
 <!--Firestore script-->
 <script type="module" src="FireBaseCollection.js"></script>
 <script type="module" src="addButton.js"></script>
-
+<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 
 <html lang="en" style="visibility: hidden;" id="webpage" >
   <head>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+
+<script type="module" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="module" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script type="module" src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+
+
+
     <title>Scan-A-Lot Management</title>
     <link rel="icon" type="image/x-icon" href="Images/logo.webp"/>
     <link rel="stylesheet" href="data-table.css">
@@ -42,7 +52,7 @@
       <h3>
         <p>Tickets</p>
       </h3>
-      <table class="table table-striped">
+      <table class="table table-striped sortable">
           <thead>
             <th>Ticket ID</th> 
             <th>Plate Number</th> 
@@ -148,7 +158,7 @@
           <button class="popupUpdateButton" id="popupVehicleUpdateButton">Add Vehicle</button>
         </div>
       </div> 
-      <table class="table table-striped">
+      <table id="VehiclesTable" class="table table-striped sortable">
         <thead>
           <th>License Number</th>
           <th>State</th>
@@ -196,7 +206,7 @@
         </div>
       </div>
       <!--Officer Data Table-->
-      <table class="table table-striped">
+      <table class="table table-striped sortable">
         <thead>
           <th>Last Name</th> 
           <th>First Name</th> 
@@ -232,7 +242,7 @@
           <button class="popupUpdateButton" id="popupLotsUpdateButton">Add Lot</button>
         </div>
       </div>
-      <table class="table table-striped">
+      <table class="table table-striped sortable">
           <thead>
             <th>Lot Name</th>
             <th>Max Latitude</th>
@@ -275,7 +285,7 @@
           <button class="popupUpdateButton" id="popupOffenseUpdateButton">Add Offense</button>
         </div>
       </div>
-      <table class="table table-striped">
+      <table class="table table-striped sortable">
         <thead>
           <th>Offense Type</th>
           <th>Fine Amount</th>
